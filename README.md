@@ -1,12 +1,12 @@
 ## Homework 3: Santorini (Part 1)
 
-In this assignment, you will design and implement the core logic of a board game called Santorini (without god cards) **in and only in Java**. The focus of this assignment is on considering design alternatives for code. In Homework 5, we will revisit the game and extend it with god cards, with a GUI, and with an AI opponent. 
+In this assignment, you will design and implement the core logic of a board game called Santorini (without god cards) in and only in Java. The focus of this assignment is on considering design alternatives for code. In Homework 5, we will revisit the game and extend it with god cards, with a GUI, and with an AI opponent. 
 
-This assignment is intended as a gentle introduction to modeling on a relatively simple problem, but it requires going through all steps of the design process.
+This assignment is intended as a gentle introduction to modeling on a relatively simple problem, but it requires going through all steps of the design process. There are two milestones for this assignment:
+* Milestone 3a: You will design your implementation of Santorini and submit design documents by Monday, February 13.
+* Milestone 3b: You will implement and test your design of Santorini by Monday, February 20.
 
 This assignment has the following learning goals:
-
-
 
 * Demonstrate a comprehensive design and development process including object-oriented analysis, object-oriented design, and implementation.
 
@@ -17,9 +17,14 @@ This assignment has the following learning goals:
 To start the assignment, use the GitHub classroom link from the Canvas assignment to create your personal repository.  It will be empty except for a copy of this document and the appendix; you will check in both your design documents and your code to this repository. Consult the appendix for guidance on how to make a new maven project. 
 
 
-## Task 1: Object-Oriented Analysis & Design
 
-For this milestone, you will analyze and design the game _Santorini_ without god cards (see appendix for rules). You should focus on the game-related functionality of the program, not its user interface. Think of playing the game by calling a sequence of methods, which you could execute in a test case; it is also helpful to think about and possibly sketch out the GUI and how it interacts with the game at this early stage. Note that the game (without god cards) is fairly simple, so you likely won't need more than a few classes/objects/methods.
+## 3a: Object-Oriented Analysis & Design
+
+For this milestone, you will analyze and design the game Santorini without god cards (see appendix for rules). You should focus on the game-related functionality of the program, not its user interface. Think of playing the game by calling a sequence of methods, which you could execute in a test case; it is also helpful to think about and possibly sketch out the GUI and how it interacts with the game at this early stage. Note that the game (without god cards) is fairly simple, so you likely won't need more than a few classes/objects/methods.
+
+Before the deadline (signups on Piazza), you will meet with a member of the course staff with your completed design (with documents pushed to repository) to receive feedback on it. The meeting is required and accounts for a portion of points for the 3a milestone. 
+
+For the 3a deadline, we will only be grading for completion. After receiving feedback, you should revise your design documents as necessary as we will be grading them for quality and accuracy with the 3b deadline. 
 
 **Deliverable 1: Domain model.** Create a domain model describing the important concepts of the game. Your domain model should be represented by a UML class diagram; you may optionally include a glossary. For more information on domain models, see Chapter 9 of Larman’s Applying UML and Patterns. Turn this in as <code>domain-model.pdf</code> in the root directory of your git repository.
 
@@ -27,19 +32,36 @@ For this milestone, you will analyze and design the game _Santorini_ without god
 
 **Deliverable 3: Behavioral contract.** Provide behavioral contracts for the following interaction initiated by the user: _The user attempts to move a worker_. The contract should explicitly describe the preconditions and postconditions for the interaction, and your behavioral contract should be consistent with your domain model and interaction diagrams. Constructing behavioral contracts should help you envision important changes of internal state of the game when a player interacts with the game. You may provide explicit examples to clarify your contract. For more information on contracts, see Chapter 11 of Larman’s Applying UML and Patterns. Turn this in as <code>contract.pdf</code> or <code>contract.md</code>.
 
-_Note that we will also be grading the overall quality of the design itself;_ please see the Evaluation section of this handout for more guidance. 
+**Deliverable 4: Justification.** Write a short report that answers the following questions to justify your design choices. To receive full credit, each of your answers to these questions must both:
+Refer to design goals, principles, and patterns where appropriate. 
+Discuss the alternatives you had considered and the trade-offs they entailed that led you to choose this particular design (essentially, your design process).
+Turn this in as <code>justification.pdf</code> or <code>justification.md.</code>
+For questions 2 and 3, embed your diagrams in the <code>justification.pdf/.md</code> file. 
 
+Questions:
+1. How can a player interact with the game? What are the possible actions?
 
-### Extra Credit: Peer review option
+2. What state does the game need to store? Where is it stored? Include the necessary parts of an **object model** to support your answer. 
 
-Design is often an interactive process where you bounce off ideas with others. We encourage you to discuss your design with other students, with 5 bonus points per student (**total 10 bonus points at the maximum**) whom you discuss with. To obtain bonus points, you must follow the following guidelines when and after your discussion.
+3. How does the game determine what is a valid build (either a normal block or a dome) and how does the game perform the build? Include the necessary parts of an **object-level interaction diagram** (using planned method names and calls) to support your answer.
 
-Once you have a reasonably complete initial draft, you may show them your diagrams and text (but not your code) and ask each other questions and give each other feedback. You may improve your designs based on their feedback and what you see in those designs that you critique from others, but the final submission must still be yours. 
+Diagrams should not be auto-generated from code (see Appendix 2 for UML notation and tool references). Diagrams should be consistent with one another and other diagrams submitted with the homework.
 
-To obtain bonus points, you need to submit an extra <code>peer-review.pdf</code> file with your homework that contains: for each student you discussed with (1) The names of the students you worked with. (2) The initial version of your designs before you received feedback. (3) A short description of whether and how you changed your design based on feedback you received or other designs you critiqued.
+Deliverables for this milestone:
+* domain-model.pdf
+    * domain model of Santorini
+* system-sequence-diagram.pdf
+    * system sequence diagram
+* contract.pdf (or .md)
+    * behavioral contracts for “The user attempts to move a worker”
+* justification.pdf (or .md)
+    * Question 1 written answer
+    * Question 2 written answer
+        * Necessary parts of object model
+    * Question 3 written answer
+        * Necessary parts of object-level interaction diagram
 
-Grading: We will only grade the final submitted deliverables, not your initial designs or how much you helped others or were helped. We will **deduct 5 points** if you take this option, but <code>peer-review.pdf</code> is incomplete. Sharing your work with other students beyond this peer review option (e.g., sharing code or sharing diagrams without providing the <code>peer-review.pdf</code> file) will be considered as an academic integrity violation as per our syllabus.
-
+To submit these documents, push them to the root directory of your Santorini repository on Github. Submit a link of the final commit to Canvas.
 
 ## Task 2: Implementation & Test
 
@@ -51,38 +73,35 @@ There is no specific numeric goal for testing (neither for your codes or for our
 
 We would like you to run your code by calling the methods directly. We do not expect a user interface, either in command line or graphical, in this assignment. You may find it useful to create a simple command line UI when you are developing the code, but we don’t expect you to implement or test a command line UI as part of your program/testing.
 
-We recommend that you complete Task 1 (modeling) before this implementation, but you should update your models based on insights gained from the implementation. We expect that the submitted models and code align.
+You should update your design documents from milestone 3a based on insights gained from the implementation. We expect that the submitted models and code align.
 
 Deliverables: Commit all your code to your GitHub repository and ensure that your project is built and tested on Github Actions -- which you will need to set up yourself (see appendix 3). 
-
-
-## Task 3: Justification
-
-Write a short report that answers the following questions to justify your design choices. To receive full credit, your answers must:
-
-* Refer to design goals, principles, and patterns where appropriate. 
-* Discuss the alternatives you had considered and the trade-offs they entailed that led you to choose this particular design (essentially, your **design process**).
-* Embed parts of one or both of the object-level interaction diagram and the object model to backup your explanation in your text. _Note that you only need to give the necessary parts of the diagrams to illustrate your explanation_. However, be sure you are using the correct symbols and notation for each. See Chapter 15 of Larman’s Applying UML and Patterns for reference on Interaction Diagrams, and Chapter 16 for Object Models.
-
-Turn this in as <code>justification.pdf</code> or <code>justification.md</code>.
-
-Questions:
-
-1. How can a player interact with the game? What are the possible actions?
-2. What state does the game need to store? Where is it stored? 
-3. How does the game determine what is a valid build (either a normal block or a dome) and how does the game perform the build? 
-
 
 ## Submitting your work
 
 As in previous homework assignments you push your solution to your Santorini repository on GitHub and submit a link to the final commit to Canvas. A link will look like `https://github.com/CMU-17-214/<reponame>/commit/<commitid>`.
 
-Please work in the main branch and include the solutions for Task 1, Task 2, and Task 3 in it. The files for Task 1 and Task 3 should all be located in the root directory of your repository.
-
+All design documents should be located in the root directory of your repository. 
+Please work in the main branch. 
 
 ## Evaluation
 
-The homework is worth 150 points. We will grade the homework roughly with the following rubric:
+The homework is worth 200 points. We will grade the homework roughly with the following rubric:
+
+**Graded with 3a milestone:**
+
+**Design milestone (30 pt):**
+
+* [ ] 5: The domain model in file domain-model.pdf is reasonably complete regarding important concepts of the game.
+* [ ] 5: The system sequence diagram in file  system-sequence-diagram.pdf is reasonably complete regarding user and system interactions.
+* [ ] 5: The behavior contract in file contract.pdf or contract.md is reasonably complete regarding pre- and post-conditions.
+* [ ] 15: The report in file justification.pdf or justification.md reasonably attempts to answer the questions and include relevant diagrams.
+
+**Design Discussion with Course Staff (20 pt):**
+
+* [ ] 20: The student is present, prepared with their completed design documents, and attentive during the meeting with the course staff.
+
+**Graded with 3b milestone:**
 
 **Design artifacts (15pt):**
 
@@ -108,12 +127,6 @@ The homework is worth 150 points. We will grade the homework roughly with the fo
 * [ ] 5: The build and tests are automated on Github Actions.
 * [ ] 5: Commits are reasonably cohesive; commit messages are reasonable.
 * [ ] 5: The implementation practices reasonable style, and the codes can pass a reasonable linter check (e.g. checkstyle.xml in previous homework).
-
-**Bonus points (10pt max):**
-
-
-
-* [ ] 10: If the peer review option is used, and an extra document **<code>peer-review.pdf</code></strong> is included, for each student you work with, covering (1) the other students' names, (2) the old design, (3) a description of changes. (5 points per student working with).
 
 
 ## Appendix 1: Santorini Rules
