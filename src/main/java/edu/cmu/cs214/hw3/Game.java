@@ -18,18 +18,33 @@ public class Game {
         
     }
 
+    /**
+     * return the current player
+     * @return the current player
+     */
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
 
+    /**
+     * return player1
+     * @return player 1
+     */
     public Player getPlayer1() {
         return player1;
     }
 
+    /**
+     * return player2
+     * @return player2
+     */
     public Player getPlayer2() {
         return player2;
     }
 
+    /**
+     * initialize a new game.
+     */
     public void initialization() {
         round ++;
         player1 = new Player(1);
@@ -46,6 +61,10 @@ public class Game {
         currentPlayer = player1;
     }
 
+    /**
+     * return the current board.
+     * @return the current board
+     */
     public Board getBoard() {
         return board;
     }
@@ -61,10 +80,17 @@ public class Game {
         return player1;
     }
 
+    /**
+     * there are 2 players, and switch between them.
+     */
     public void changeCurrentPlayer() {
         currentPlayer = getAnotherPlayer(currentPlayer);
     }
 
+    /**
+     * return the round No.
+     * @return
+     */
     public int getRound() {
         return round;
     }
@@ -87,6 +113,32 @@ public class Game {
             return false;
         }
         return true;
+    }
+
+    /**
+     * scan the input and return the value.
+     * @param arg
+     * @return Grid
+     */
+    Grid scanGetGrid(String arg) {
+        if (arg == null || arg.length() == 0) {
+            return null;
+        }
+        String[] grid = arg.split(",");
+        int[] gridInt = new int[2];
+        for (int i = 0; i < 2; i ++) {
+            try {
+                gridInt[i] = Integer.valueOf(grid[i]) - 1;
+                if (gridInt[i] >= 5) {
+                    System.out.print(gridInt[i]);
+                    System.out.println("There are only 5*5 grids on the board, please choose a right one.");
+                    return null;
+                }
+            } catch (Exception e) {
+                return null;
+            }
+        }
+        return getBoard().getGrids()[gridInt[0]][gridInt[1]];
     }
 
 }

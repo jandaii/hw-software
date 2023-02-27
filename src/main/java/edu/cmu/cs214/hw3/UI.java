@@ -106,7 +106,7 @@ public class UI {
             System.out.println("Player " + currentPlayer +" now build your tower");
             System.out.println("Please now choose a valid grid to build your tower");
             String buildPlace = sc.nextLine().trim();
-            Grid buildGrid = scanGetGrid(buildPlace);
+            Grid buildGrid = gameNow.scanGetGrid(buildPlace);
             if (nowWorker.buildTower(buildGrid) == false) {
                 System.out.println("It is not a valid build. please try again");
                 System.out.println(nowWorker);
@@ -133,7 +133,7 @@ public class UI {
             while (true) {
                 System.out.println("Please set your worker"+(j+1)+" location. like row, column");
                 String input = sc.nextLine().trim();
-                Grid location = scanGetGrid(input);
+                Grid location = gameNow.scanGetGrid(input);
                 if (location == null) {
                     System.out.println("there are something wrong about your input, please input like \"3, 2 \"" + input);
                     continue;
@@ -151,32 +151,6 @@ public class UI {
             currentPlayer = game.getAnotherPlayer(currentPlayer);
             System.out.println("Now it's player " + currentPlayer + " turn");
         }
-    }
-
-    /**
-     * scan the input and return the value.
-     * @param arg
-     * @return Grid
-     */
-    private Grid scanGetGrid(String arg) {
-        if (arg == null || arg.length() == 0) {
-            return null;
-        }
-        String[] grid = arg.split(",");
-        int[] gridInt = new int[2];
-        for (int i = 0; i < 2; i ++) {
-            try {
-                gridInt[i] = Integer.valueOf(grid[i]) - 1;
-                if (gridInt[i] >= 5) {
-                    System.out.print(gridInt[i]);
-                    System.out.println("There are only 5*5 grids on the board, please choose a right one.");
-                    return null;
-                }
-            } catch (Exception e) {
-                return null;
-            }
-        }
-        return gameNow.getBoard().getGrids()[gridInt[0]][gridInt[1]];
     }
 
     /**
