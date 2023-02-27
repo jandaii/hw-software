@@ -1,9 +1,12 @@
 package edu.cmu.cs214.hw3;
 
-
+/**
+ * Worker Class for worker status.
+ * @author Xuezhen Dai (andrew ID: xuezhend)
+ */
 public class Worker {
     private Grid currentGrid;
-    boolean ifWin = false;
+    private boolean ifWin = false;
     /**
      * constructor
      * @param id
@@ -81,10 +84,11 @@ public class Worker {
             System.out.println("This grid has been occupied.");
             return false;
         }
-        if (layer == 3) {
-            System.out.println("There have been a dome on the top, you can't move to this gird anymore.");
-            return false;
-        }
+        // There is no need to check this, since the game would end before this.
+        // if (layer == 3) {
+        //     System.out.println("There have been a dome on the top, you can't move to this gird anymore.");
+        //     return false;
+        // }
         if (oldColumn - newColumn > 1 || oldColumn - newColumn < -1) {
             return false;
         }

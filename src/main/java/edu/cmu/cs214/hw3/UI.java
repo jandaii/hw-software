@@ -1,8 +1,13 @@
 package edu.cmu.cs214.hw3;
 import java.util.Scanner;
+
+/**
+ * UI class for System.in and System.out.
+ * @author Xuezhen Dai (andrew ID: xuezhend)
+ */
 public class UI {
-    private Player currentPlayer;
-    private Game gameNow;
+    Player currentPlayer;
+    public Game gameNow;
 
     private boolean ifMoved = false;
     private Worker nowWorker;
@@ -24,6 +29,7 @@ public class UI {
 
     /**
      * start a new round and return if this is successful.
+     * There are scanner in this method, cannot be tested.
      * @param game
      * @return boolean if this action is success.
      */
@@ -39,7 +45,7 @@ public class UI {
         initialSettingWorker(game, sc);
 
         //move and build process
-        buildTower(game, sc);
+        oneTurnAction(game, sc);
         System.out.println("Do you want to start a new round?(Y/Yes,N/No)");
         String ifnewRound = sc.nextLine().trim();
         if (ifnewRound.equalsIgnoreCase("Y") || (ifnewRound).equalsIgnoreCase("Yes")) {
@@ -48,7 +54,13 @@ public class UI {
         return false;
     }
 
-    private void buildTower(Game game, Scanner sc) {
+    /**
+     * Every turn the players need to finish.
+     * System.in cannot be tested.
+     * @param game
+     * @param sc
+     */
+    private void oneTurnAction(Game game, Scanner sc) {
         while (true) {
             // move action.
             if (ifMoved == false) {
@@ -66,15 +78,15 @@ public class UI {
                 }
                 try {
                     int workerGridInfo = Integer.parseInt(workerInfo) - 1;
-                    Worker nowWorker = currentPlayer.getWorker().get(workerGridInfo);
+                    nowWorker = currentPlayer.getWorkers().get(workerGridInfo);
                     System.out.println("Available grids for current worker is " + nowWorker.getValidMoveGrids(game.getBoard().getGrids()));
                     System.out.println("Now please enter a grid.(row, column)");
                     String gridInfo = sc.nextLine().trim();
                     int[] GridInfo = locationScanner(gridInfo);
                     if (GridInfo == null) {
-                    System.out.println("You need to enter the valid value (row, column),eg (3, 3)");
-                }
-                if (move(workerGridInfo,GridInfo) == false) {
+                        System.out.println("You need to enter the valid value (row, column),eg (3, 3)");
+                    }
+                if (gameNow.move(nowWorker,GridInfo) == false) {
                     System.out.println("This is not a valid move.");
                     continue;
                 }
@@ -84,7 +96,6 @@ public class UI {
                 }
                 ifMoved = true;
                 } catch (Exception e) {
-                    
                     System.out.println("Please enter a valid worker.");
                     continue;
                 }
@@ -109,9 +120,14 @@ public class UI {
         }
     }
 
-
+    /**
+     * for set the workers into the board.
+     * There is a Scanner, can't test.
+     * @param game
+     * @param sc
+     */
     private void initialSettingWorker(Game game, Scanner sc) {
-        System.out.println("Worker1 please set your workers.");
+        System.out.println("Player1 please set your workers.");
         for (int i = 0; i < 2; i++) {
             int j = 0;
             while (true) {
@@ -121,7 +137,7 @@ public class UI {
                 if (location == null) {
                     System.out.println("there are something wrong about your input, please input like \"3, 2 \"" + input);
                     continue;
-                } else if (currentPlayer.getWorker().get(j).setWorker(location) == false ) {
+                } else if (currentPlayer.getWorkers().get(j).setWorker(location) == false ) {
                     System.out.println("There is already a worker now, please pick another one");
                     continue;
                 } else {
@@ -137,8 +153,13 @@ public class UI {
         }
     }
 
+    /**
+     * scan the input and return the value.
+     * @param arg
+     * @return Grid
+     */
     private Grid scanGetGrid(String arg) {
-        if (arg == null) {
+        if (arg == null || arg.length() == 0) {
             return null;
         }
         String[] grid = arg.split(",");
@@ -158,7 +179,13 @@ public class UI {
         return gameNow.getBoard().getGrids()[gridInt[0]][gridInt[1]];
     }
 
-    private int[] locationScanner(String response) {
+    /**
+     * extract the location from String.
+     * need to be private (non-static) but set into public for testing.
+     * @param response
+     * @return
+     */
+    public static int[] locationScanner(String response) {
         String[] grid = response.split(",");
         int [] gridInt = new int[2];
         for (int i = 0; i < 2;i ++) {
@@ -169,23 +196,5 @@ public class UI {
             }
         }
         return gridInt;
-    }
-    private boolean move(int worker, int[] gridLocation) {
-        if (gridLocation == null) {
-            return false;
-        }
-        Grid[][] grids = gameNow.getBoard().getGrids();
-        
-        if (worker > 3) {
-            return false;
-        }
-        nowWorker = currentPlayer.getWorker().get(worker);
-        int row = gridLocation[0] - 1;
-        int column = gridLocation[1] - 1;
-        Grid goalGrid= grids[row][column];
-        if (currentPlayer.moveWorker(nowWorker, goalGrid) == false) {
-            return false;
-        }
-        return true;
     }
 }

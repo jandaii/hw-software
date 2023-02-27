@@ -1,6 +1,9 @@
 package edu.cmu.cs214.hw3;
 
-
+/**
+ * Board class for the game deck.
+ * @author Xuezhen Dai (xuezhend)
+ */
 public class Board {
     /**
      * player1 play first.
@@ -34,7 +37,8 @@ public class Board {
     }
 
     /**
-     * get a single grid of the board
+     * get a single grid of the board.
+     * Getter no need to test.
      * @param x
      * @param y
      * @return grid

@@ -1,8 +1,8 @@
 package edu.cmu.cs214.hw3;
 
 /**
- * Hello world!
- *
+ * main method to call UI to play this game.
+ * @author Xuezhen Dai (andrew ID: xuezhend)
  */
 public class Main 
 {

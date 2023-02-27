@@ -2,14 +2,21 @@ package edu.cmu.cs214.hw3;
 
 import java.util.ArrayList;
 import java.util.List;
-public class Player {
-    List<Worker> playerListWorker = new ArrayList<Worker>();
-    int playerId;
-    boolean ifWin;
 
+/**
+ * Player class to store the workers and player status.
+ * @author Xuezhen Dai (andrew ID: xuezhend)
+ */
+public class Player {
+    private List<Worker> playerListWorker = new ArrayList<Worker>();
+    private int playerId;
+
+    /**
+     * constructor.
+     * @param id
+     */
     public Player(int id) {
         playerId = id;
-        ifWin = false;
     }
     /**
      * add workers into the player.
@@ -23,7 +30,7 @@ public class Player {
      * return the worker list.
      * @return worker list. 
      */
-    public List<Worker> getWorker() {
+    public List<Worker> getWorkers() {
         return playerListWorker;
     }
     /**
@@ -82,7 +89,20 @@ public class Player {
         return false;
     }
 
+    /**
+     * return the worker.
+     * @param workerNo
+     * @return
+     */
+    public Worker getWorker(int workerNo) {
+        return this.getWorkers().get(workerNo);
+    }
 
+
+    /**
+     * override toString method for print
+     * No need to test.
+     */
     @Override
     public String toString() {
         return String.valueOf(playerId);

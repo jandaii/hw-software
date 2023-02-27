@@ -1,6 +1,9 @@
 package edu.cmu.cs214.hw3;
 
-
+/**
+ * Game class for the game to manipulate the turn.
+ * @author Xuezhen Dai xuezhend
+ */
 public class Game {
     private int round = 0;
     Board board;
@@ -64,6 +67,26 @@ public class Game {
 
     public int getRound() {
         return round;
+    }
+
+    /**
+     * current player to move the worker.
+     * @param worker
+     * @param gridLocation
+     * @return
+     */
+    public boolean move(Worker worker, int[] gridLocation) {
+        if (gridLocation == null) {
+            return false;
+        }
+        Grid[][] grids = getBoard().getGrids();
+        int row = gridLocation[0] - 1;
+        int column = gridLocation[1] - 1;
+        Grid goalGrid= grids[row][column];
+        if (currentPlayer.moveWorker(worker, goalGrid) == false) {
+            return false;
+        }
+        return true;
     }
 
 }

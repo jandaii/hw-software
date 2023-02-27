@@ -1,5 +1,8 @@
 package edu.cmu.cs214.hw3;
-
+/**
+ * Grid class for store the status and information related to the grid.
+ * @author Xuezhen Dai (xuezhend)
+ */
 public class Grid {
     private int row;
     private int column;
@@ -58,6 +61,11 @@ public class Grid {
         return isOccupied;
     }
 
+    /**
+     * toString method, to make sure the print.
+     * No need to test.
+     * @return String
+     */
     public String toString(){
         return String.valueOf(row) + String.valueOf(column) + String.valueOf(layer);
     }

@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Worker.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hw3</a> &gt; <a href="index.source.html" class="el_package">edu.cmu.cs214.hw3</a> &gt; <span class="el_source">Worker.java</span></div><h1>Worker.java</h1><pre class="source lang-java linenums">package edu.cmu.cs214.hw3;
 
-
+/**
+ * Worker Class for worker status.
+ * @author Xuezhen Dai (andrew ID: xuezhend)
+ */
 public class Worker {
     private Grid currentGrid;
-<span class="fc" id="L6">    boolean ifWin = false;</span>
+<span class="fc" id="L9">    private boolean ifWin = false;</span>
     /**
      * constructor
      * @param id
      */
-<span class="fc" id="L11">    public Worker() {</span>
-<span class="fc" id="L12">    }</span>
+<span class="fc" id="L14">    public Worker() {</span>
+<span class="fc" id="L15">    }</span>
     /**
      * set worker initial location.
      * @param id
      * @param newLocation
      */
     public boolean setWorker(Grid newLocation) {
-<span class="fc bfc" id="L19" title="All 2 branches covered.">        if (newLocation.getOccupied() == true) {</span>
-<span class="fc" id="L20">            return false;</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if (newLocation.getOccupied() == true) {</span>
+<span class="fc" id="L23">            return false;</span>
         }
-<span class="pc bpc" id="L22" title="1 of 4 branches missed.">        if (newLocation.getColumn() &lt; 5 &amp;&amp; newLocation.getRow() &lt; 5) {</span>
-<span class="fc" id="L23">            this.currentGrid = newLocation;</span>
-<span class="fc" id="L24">            currentGrid.setOccupied(true);</span>
-<span class="fc" id="L25">            return true;</span>
+<span class="pc bpc" id="L25" title="1 of 4 branches missed.">        if (newLocation.getColumn() &lt; 5 &amp;&amp; newLocation.getRow() &lt; 5) {</span>
+<span class="fc" id="L26">            this.currentGrid = newLocation;</span>
+<span class="fc" id="L27">            currentGrid.setOccupied(true);</span>
+<span class="fc" id="L28">            return true;</span>
         }
-<span class="fc" id="L27">        return false;</span>
+<span class="fc" id="L30">        return false;</span>
         
     }
 
@@ -34,7 +37,7 @@ public class Worker {
      * @return the current location of List.
      */
     public Grid getLocation() {
-<span class="fc" id="L37">        return currentGrid;</span>
+<span class="fc" id="L40">        return currentGrid;</span>
     }
 
     /**
@@ -44,25 +47,25 @@ public class Worker {
      * @return if the action is done successfully
      */
     public boolean setLocation(Grid grid) {
-<span class="pc bpc" id="L47" title="1 of 4 branches missed.">        if (grid.getColumn() &gt;= 5 || grid.getRow() &gt;= 5) {</span>
-<span class="fc" id="L48">            System.out.println(&quot;You need to choose a grid on the board both less than 5&quot;);</span>
+<span class="pc bpc" id="L50" title="1 of 4 branches missed.">        if (grid.getColumn() &gt;= 5 || grid.getRow() &gt;= 5) {</span>
+<span class="fc" id="L51">            System.out.println(&quot;You need to choose a grid on the board both less than 5&quot;);</span>
             //need to remind the user with &quot;You need to choose a grid on the board&quot;
-<span class="fc" id="L50">            return false;</span>
+<span class="fc" id="L53">            return false;</span>
         }
-<span class="fc bfc" id="L52" title="All 2 branches covered.">        if (checkIfValid(grid) == false) {</span>
-<span class="fc" id="L53">            System.out.println(&quot;This is not a valid move.&quot;);</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (checkIfValid(grid) == false) {</span>
+<span class="fc" id="L56">            System.out.println(&quot;This is not a valid move.&quot;);</span>
             //need to remind the user with &quot;This grid is not valid move&quot;
-<span class="fc" id="L55">            return false;</span>
+<span class="fc" id="L58">            return false;</span>
         }
         //change the old grid into false
-<span class="fc" id="L58">        currentGrid.setOccupied(false);</span>
-<span class="fc" id="L59">        currentGrid = grid;</span>
+<span class="fc" id="L61">        currentGrid.setOccupied(false);</span>
+<span class="fc" id="L62">        currentGrid = grid;</span>
         //change the new grid into true
-<span class="fc" id="L61">        currentGrid.setOccupied(true);</span>
-<span class="pc bpc" id="L62" title="1 of 2 branches missed.">        if (currentGrid.getLayer() == 2) {</span>
-<span class="nc" id="L63">            ifWin = true;</span>
+<span class="fc" id="L64">        currentGrid.setOccupied(true);</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        if (currentGrid.getLayer() == 2) {</span>
+<span class="fc" id="L66">            ifWin = true;</span>
         }
-<span class="fc" id="L65">        return true;</span>
+<span class="fc" id="L68">        return true;</span>
     }
     /**
      * 
@@ -70,31 +73,32 @@ public class Worker {
      * @return boolean (if the move is valid)
      */
     private boolean checkIfValid(Grid grid) {
-<span class="fc" id="L73">        int oldRow = currentGrid.getRow();</span>
-<span class="fc" id="L74">        int oldColumn = currentGrid.getColumn();</span>
-<span class="fc" id="L75">        int oldLayer = currentGrid.getLayer();</span>
-<span class="fc" id="L76">        int newRow = grid.getRow();</span>
-<span class="fc" id="L77">        int newColumn = grid.getColumn();</span>
-<span class="fc" id="L78">        int layer = grid.getLayer();</span>
+<span class="fc" id="L76">        int oldRow = currentGrid.getRow();</span>
+<span class="fc" id="L77">        int oldColumn = currentGrid.getColumn();</span>
+<span class="fc" id="L78">        int oldLayer = currentGrid.getLayer();</span>
+<span class="fc" id="L79">        int newRow = grid.getRow();</span>
+<span class="fc" id="L80">        int newColumn = grid.getColumn();</span>
+<span class="fc" id="L81">        int layer = grid.getLayer();</span>
         
-<span class="pc bpc" id="L80" title="1 of 2 branches missed.">        if (grid.getOccupied() == true) {</span>
-<span class="nc" id="L81">            System.out.println(&quot;This grid has been occupied.&quot;);</span>
-<span class="nc" id="L82">            return false;</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">        if (grid.getOccupied() == true) {</span>
+<span class="fc" id="L84">            System.out.println(&quot;This grid has been occupied.&quot;);</span>
+<span class="fc" id="L85">            return false;</span>
         }
-<span class="pc bpc" id="L84" title="1 of 2 branches missed.">        if (layer == 3) {</span>
-<span class="nc" id="L85">            System.out.println(&quot;There have been a dome on the top, you can't move to this gird anymore.&quot;);</span>
-<span class="nc" id="L86">            return false;</span>
+        // There is no need to check this, since the game would end before this.
+        // if (layer == 3) {
+        //     System.out.println(&quot;There have been a dome on the top, you can't move to this gird anymore.&quot;);
+        //     return false;
+        // }
+<span class="pc bpc" id="L92" title="1 of 4 branches missed.">        if (oldColumn - newColumn &gt; 1 || oldColumn - newColumn &lt; -1) {</span>
+<span class="fc" id="L93">            return false;</span>
         }
-<span class="pc bpc" id="L88" title="1 of 4 branches missed.">        if (oldColumn - newColumn &gt; 1 || oldColumn - newColumn &lt; -1) {</span>
-<span class="fc" id="L89">            return false;</span>
+<span class="pc bpc" id="L95" title="1 of 4 branches missed.">        if (oldRow - newRow &gt; 1 || newRow - newColumn &lt; -1) {</span>
+<span class="fc" id="L96">            return false;</span>
         }
-<span class="pc bpc" id="L91" title="1 of 4 branches missed.">        if (oldRow - newRow &gt; 1 || newRow - newColumn &lt; -1) {</span>
-<span class="fc" id="L92">            return false;</span>
+<span class="pc bpc" id="L98" title="1 of 4 branches missed.">        if (oldLayer - layer &gt; 1 || oldLayer - layer &lt; -1) {</span>
+<span class="fc" id="L99">            return false;</span>
         }
-<span class="pc bpc" id="L94" title="1 of 4 branches missed.">        if (oldLayer - layer &gt; 1 || oldLayer - layer &lt; -1) {</span>
-<span class="fc" id="L95">            return false;</span>
-        }
-<span class="fc" id="L97">        return true;</span>
+<span class="fc" id="L101">        return true;</span>
     }
 
     /**
@@ -103,27 +107,27 @@ public class Worker {
      * @return
      */
     public boolean buildTower(Grid grid) {
-<span class="fc bfc" id="L106" title="All 2 branches covered.">        if (checkIfValidBuild(grid, currentGrid) == false ) {</span>
-<span class="fc" id="L107">            return false;</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">        if (checkIfValidBuild(grid, currentGrid) == false ) {</span>
+<span class="fc" id="L111">            return false;</span>
         }
-<span class="fc" id="L109">        grid.addLayer();</span>
-<span class="fc" id="L110">        return true;</span>
+<span class="fc" id="L113">        grid.addLayer();</span>
+<span class="fc" id="L114">        return true;</span>
     }
 
     private boolean checkIfValidBuild(Grid grid, Grid currentLocation) {
-<span class="fc bfc" id="L114" title="All 2 branches covered.">        if (grid.getOccupied() == true) {</span>
-<span class="fc" id="L115">            System.out.println(&quot;This grid is occupied&quot;);</span>
-<span class="fc" id="L116">            return false;</span>
-        }
-<span class="fc bfc" id="L118" title="All 2 branches covered.">        if (grid.getLayer() == 3) {</span>
-<span class="fc" id="L119">            System.out.println(&quot;This grid had the dome, you cannot build or move to this grid.&quot;);</span>
+<span class="fc bfc" id="L118" title="All 2 branches covered.">        if (grid.getOccupied() == true) {</span>
+<span class="fc" id="L119">            System.out.println(&quot;This grid is occupied&quot;);</span>
 <span class="fc" id="L120">            return false;</span>
         }
-<span class="pc bpc" id="L122" title="1 of 4 branches missed.">        if (Math.abs(grid.getColumn() - currentLocation.getColumn()) &gt; 1 || Math.abs(grid.getRow() - currentLocation.getRow()) &gt; 1) {</span>
-<span class="fc" id="L123">            System.out.println(&quot;This grid is too far.&quot;);</span>
+<span class="fc bfc" id="L122" title="All 2 branches covered.">        if (grid.getLayer() == 3) {</span>
+<span class="fc" id="L123">            System.out.println(&quot;This grid had the dome, you cannot build or move to this grid.&quot;);</span>
 <span class="fc" id="L124">            return false;</span>
         }
-<span class="fc" id="L126">        return true;</span>
+<span class="pc bpc" id="L126" title="1 of 4 branches missed.">        if (Math.abs(grid.getColumn() - currentLocation.getColumn()) &gt; 1 || Math.abs(grid.getRow() - currentLocation.getRow()) &gt; 1) {</span>
+<span class="fc" id="L127">            System.out.println(&quot;This grid is too far.&quot;);</span>
+<span class="fc" id="L128">            return false;</span>
+        }
+<span class="fc" id="L130">        return true;</span>
     }
 
     /**
@@ -131,7 +135,7 @@ public class Worker {
      * @return boolean if win
      */
     public boolean getIfWin() {
-<span class="nc" id="L134">        return ifWin;</span>
+<span class="fc" id="L138">        return ifWin;</span>
     }
 
     /**
@@ -140,32 +144,35 @@ public class Worker {
      * @return String of available grids
      */
     public String getValidMoveGrids(Grid[][] grids) {
-<span class="nc" id="L143">        int row = currentGrid.getRow();</span>
-<span class="nc" id="L144">        int column = currentGrid.getColumn();</span>
-<span class="nc" id="L145">        int currentLayer = currentGrid.getLayer();</span>
-<span class="nc" id="L146">        int[] rowArray = {row - 1, row, row + 1};</span>
-<span class="nc" id="L147">        int[] columnArray = {column - 1, column, column + 1};</span>
-<span class="nc" id="L148">        String output = &quot;&quot;;</span>
-<span class="nc bnc" id="L149" title="All 2 branches missed.">        for (int i = 0; i &lt; 3;i ++){</span>
-<span class="nc bnc" id="L150" title="All 2 branches missed.">            for (int j = 0; j &lt; 3;j++){</span>
-<span class="nc bnc" id="L151" title="All 2 branches missed.">                if (Math.abs(currentLayer - grids[rowArray[i]][columnArray[j]].getLayer()) &gt;= 2) {</span>
-<span class="nc" id="L152">                    continue;</span>
+<span class="fc" id="L147">        int row = currentGrid.getRow();</span>
+<span class="fc" id="L148">        int column = currentGrid.getColumn();</span>
+<span class="fc" id="L149">        int currentLayer = currentGrid.getLayer();</span>
+<span class="fc" id="L150">        int[] rowArray = {row - 1, row, row + 1};</span>
+<span class="fc" id="L151">        int[] columnArray = {column - 1, column, column + 1};</span>
+<span class="fc" id="L152">        String output = &quot;&quot;;</span>
+<span class="fc bfc" id="L153" title="All 2 branches covered.">        for (int i = 0; i &lt; 3;i ++){</span>
+<span class="fc bfc" id="L154" title="All 2 branches covered.">            for (int j = 0; j &lt; 3;j++){</span>
+<span class="pc bpc" id="L155" title="2 of 8 branches missed.">                if (rowArray[i] &lt; 0 || columnArray[j] &lt; 0 || rowArray[i] &gt;= 5 || columnArray[j] &gt;= 5 ) {</span>
+<span class="nc" id="L156">                    continue;</span>
                 }
-<span class="nc bnc" id="L154" title="All 12 branches missed.">                if (rowArray[i] &gt;= 0 &amp;&amp; columnArray[j] &gt;= 0 &amp;&amp; rowArray[i] &lt; 5 &amp;&amp; columnArray[j] &lt; 5 &amp;&amp; grids[rowArray[i]][columnArray[j]].getOccupied() == false &amp;&amp; grids[rowArray[i]][columnArray[j]].getLayer() != 3) {</span>
-<span class="nc" id="L155">                    String validGrids = &quot;(&quot; + (rowArray[i] + 1) +&quot;, &quot; +(columnArray[j]+1) +&quot;)&quot;;</span>
-<span class="nc" id="L156">                    output = output +&quot; &quot; + validGrids;</span>
+<span class="fc bfc" id="L158" title="All 2 branches covered.">                if (Math.abs(currentLayer - grids[rowArray[i]][columnArray[j]].getLayer()) &gt;= 2) {</span>
+<span class="fc" id="L159">                    continue;</span>
+                }
+<span class="pc bpc" id="L161" title="1 of 4 branches missed.">                if ( grids[rowArray[i]][columnArray[j]].getOccupied() == false &amp;&amp; grids[rowArray[i]][columnArray[j]].getLayer() != 3) {</span>
+<span class="fc" id="L162">                    String validGrids = &quot;(&quot; + (rowArray[i] + 1) +&quot;, &quot; +(columnArray[j]+1) +&quot;)&quot;;</span>
+<span class="fc" id="L163">                    output = output +&quot; &quot; + validGrids;</span>
                 } 
             }
         }
-<span class="nc" id="L160">        return String.valueOf(output);</span>
+<span class="fc" id="L167">        return String.valueOf(output);</span>
     }
 
     public boolean isMovable(Grid[][] grids) {
-<span class="nc" id="L164">        String validMove = getValidMoveGrids(grids);</span>
-<span class="nc bnc" id="L165" title="All 4 branches missed.">        if (validMove == null || validMove.length() == 0) {</span>
-<span class="nc" id="L166">            return false;</span>
+<span class="fc" id="L171">        String validMove = getValidMoveGrids(grids);</span>
+<span class="pc bpc" id="L172" title="1 of 4 branches missed.">        if (validMove == null || validMove.length() == 0) {</span>
+<span class="fc" id="L173">            return false;</span>
         }
-<span class="nc" id="L168">        return true;</span>
+<span class="fc" id="L175">        return true;</span>
     }
     
 }

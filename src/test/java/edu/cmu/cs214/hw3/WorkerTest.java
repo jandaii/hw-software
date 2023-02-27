@@ -23,6 +23,13 @@ public class WorkerTest {
     }
 
     @Test
+    public void setWorkerFalse()
+    {
+        Grid newGrid = new Grid(5, 4);
+        assertFalse(nWorker.setWorker(newGrid));
+    }
+
+    @Test
     public void getLocation()
     {
         nWorker.setWorker(setGrid);
@@ -151,6 +158,65 @@ public class WorkerTest {
         assertFalse(nWorker.buildTower(newGrid));
     }
 
+    @Test
+    public void testIfwin() {
+        nWorker.setWorker(setGrid);
+        Grid grid1 = new Grid(3, 3);
+        grid1.addLayer();
+        nWorker.setLocation(grid1);
+        Grid grid2 = new Grid (3,4);
+        grid2.addLayer();
+        grid2.addLayer();
+        nWorker.setLocation(grid2);
+        assertTrue(nWorker.getIfWin());
+    }
 
+    @Test
+    public void testIfwinFalse() {
+        nWorker.setWorker(setGrid);
+        Grid grid1 = new Grid(3, 3);
+        grid1.addLayer();
+        nWorker.setLocation(grid1);
+        assertFalse(nWorker.getIfWin());
+    }
 
+    @Test
+    public void testOccupiedMove() {
+        nWorker.setWorker(setGrid);
+        Grid grid1 = new Grid(3, 3);
+        grid1.addLayer();
+        grid1.setOccupied(true);
+        assertFalse(nWorker.setLocation(grid1));
+    }
+
+    @Test
+    public void testReturnStr() {
+        Board board = new Board();
+        nWorker.setWorker(setGrid);
+        assertEquals(nWorker.getValidMoveGrids(board.getGrids()).trim(), "(2, 3) (2, 4) (2, 5) (3, 3) (3, 4) (3, 5) (4, 3) (4, 4) (4, 5)".trim());
+    }
+
+    @Test
+    public void testMovable() {
+        Board board = new Board();
+        nWorker.setWorker(setGrid);
+        assertTrue(nWorker.isMovable(board.getGrids()));
+        
+    }
+    @Test
+    public void testReturnStr1() {
+        Board board = new Board();
+        nWorker.setWorker(board.getGrid(0, 0));
+        assertEquals(nWorker.getValidMoveGrids(board.getGrids()).trim(), "(1, 2) (2, 1) (2, 2)".trim());
+    }
+
+    @Test
+    public void testReturnStr2() {
+        Board board = new Board();
+        nWorker.setWorker(board.getGrid(0, 0));
+        Grid girdTO = board.getGrid(1, 1);
+        girdTO.addLayer();
+        girdTO.addLayer();
+        assertEquals(nWorker.getValidMoveGrids(board.getGrids()).trim(), "(1, 2) (2, 1)".trim());
+    }
 }
