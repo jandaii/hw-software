@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Board.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hw3</a> &gt; <a href="index.source.html" class="el_package">edu.cmu.cs214.hw3</a> &gt; <span class="el_source">Board.java</span></div><h1>Board.java</h1><pre class="source lang-java linenums">package edu.cmu.cs214.hw3;
+
+
+public class Board {
+    /**
+     * player1 play first.
+     */
+
+    private static final int ROW = 5;
+    private static final int COLUMN = 5;
+    
+    private Grid[][] grids;
+
+    /**
+     * Constructor.
+     * Start with an empty board
+     */
+<span class="fc" id="L18">    public Board() {</span>
+<span class="fc" id="L19">        grids = new Grid[ROW][COLUMN];</span>
+        //start from 0
+<span class="fc bfc" id="L21" title="All 2 branches covered.">        for (int i = 0;i &lt; ROW; i ++) {</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">            for (int m = 0; m &lt; COLUMN; m ++){</span>
+<span class="fc" id="L23">                grids[i][m] = new Grid(i, m);</span>
+            }
+        }
+<span class="fc" id="L26">    }</span>
+
+    /**
+     * get the array of the grids of the board.
+     * @return array of grids Grid[][]
+     */
+    public Grid[][] getGrids() {
+<span class="nc" id="L33">        return grids;</span>
+    }
+
+    /**
+     * get a single grid of the board
+     * @param x
+     * @param y
+     * @return grid
+     */
+    public Grid getGrid(int x, int y) {
+<span class="nc bnc" id="L43" title="All 8 branches missed.">        if (x &gt; ROW || x &lt; 0 || y &gt; COLUMN || y &lt; 0) {</span>
+<span class="nc" id="L44">            return null;</span>
+        }
+<span class="nc" id="L46">        return this.grids[x][y];</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

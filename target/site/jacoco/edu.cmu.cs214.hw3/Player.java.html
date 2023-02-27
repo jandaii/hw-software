@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Player.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hw3</a> &gt; <a href="index.source.html" class="el_package">edu.cmu.cs214.hw3</a> &gt; <span class="el_source">Player.java</span></div><h1>Player.java</h1><pre class="source lang-java linenums">package edu.cmu.cs214.hw3;
+
+import java.util.ArrayList;
+import java.util.List;
+public class Player {
+<span class="fc" id="L6">    List&lt;Worker&gt; playerListWorker = new ArrayList&lt;Worker&gt;();</span>
+    int playerId;
+    boolean ifWin;
+
+<span class="fc" id="L10">    public Player(int id) {</span>
+<span class="fc" id="L11">        playerId = id;</span>
+<span class="fc" id="L12">        ifWin = false;</span>
+<span class="fc" id="L13">    }</span>
+    /**
+     * add workers into the player.
+     * @param worker
+     */
+    void addWorker(Worker worker) {
+<span class="fc" id="L19">        playerListWorker.add(worker);</span>
+<span class="fc" id="L20">    }</span>
+
+    /**
+     * return the worker list.
+     * @return worker list. 
+     */
+    public List&lt;Worker&gt; getWorker() {
+<span class="fc" id="L27">        return playerListWorker;</span>
+    }
+    /**
+     * move the worker to the new grid
+     * @param worker
+     * @param grid
+     * @return if the move is successful
+     */
+    public boolean moveWorker(Worker worker, Grid grid) {
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if (worker.setLocation(grid) == true) {</span>
+<span class="fc" id="L37">            return true;</span>
+        }
+<span class="fc" id="L39">        return false;</span>
+    }
+
+    /**
+     * get if the worker won
+     * @param worker
+     * @return if the worker won
+     */
+    public boolean getWinStatus() {
+<span class="nc bnc" id="L48" title="All 2 branches missed.">        for (Worker worker: playerListWorker) {</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            if (worker.getIfWin() == true) {</span>
+<span class="nc" id="L50">                return true;</span>
+            }
+        }
+<span class="nc" id="L53">        return false;</span>
+        
+    }
+
+    /**
+     * choose a worker to build a new tower
+     * @param worker
+     * @param newGrid
+     * @return if the worker successfully build a new tower
+     */
+    public boolean buildTower(Worker worker, Grid newGrid) {
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        if (worker.buildTower(newGrid)) {</span>
+<span class="fc" id="L65">            return true;</span>
+        }
+<span class="fc" id="L67">        return false;</span>
+    }
+
+    /**
+     * check if the player is still movable, if false, the other player wins.
+     * @param board
+     * @return boolean if the player is still movable
+     */
+    public boolean ifMovable(Board board) {
+<span class="nc" id="L76">        Grid[][] grids = board.getGrids();</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        for (Worker worker: playerListWorker) {</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            if (worker.isMovable(grids) == true) {</span>
+<span class="nc" id="L79">                return true;</span>
+            }
+        }
+<span class="nc" id="L82">        return false;</span>
+    }
+
+
+    @Override
+    public String toString() {
+<span class="nc" id="L88">        return String.valueOf(playerId);</span>
+    }
+
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
