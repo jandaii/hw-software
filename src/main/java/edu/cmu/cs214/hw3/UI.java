@@ -90,7 +90,7 @@ public class UI {
                     System.out.println("This is not a valid move.");
                     continue;
                 }
-                if (currentPlayer.getWinStatus() == true) {
+                if (gameNow.ifEnd() == true) {
                     System.out.println("The player " + currentPlayer + " has won!");
                     break;
                 }
@@ -104,15 +104,12 @@ public class UI {
             // build action.
             System.out.println("You have successfully moved your worker.");
             System.out.println("Player " + currentPlayer +" now build your tower");
+            
             System.out.println("Please now choose a valid grid to build your tower");
             String buildPlace = sc.nextLine().trim();
-            Grid buildGrid = gameNow.scanGetGrid(buildPlace);
-            if (nowWorker.buildTower(buildGrid) == false) {
-                System.out.println("It is not a valid build. please try again");
-                System.out.println(nowWorker);
+            if (gameNow.build(nowWorker, buildPlace) == false) {
                 continue;
-            }
-            System.out.println("You successfully build a tower on (" + (buildGrid.getRow() + 1) +", " + (buildGrid.getColumn() + 1) + ") and the height now is " + buildGrid.getLayer() );
+            } 
             nowWorker = null;
             currentPlayer = game.getAnotherPlayer(currentPlayer);
             System.out.println("Now is Player " + currentPlayer + " is playing");
@@ -133,7 +130,7 @@ public class UI {
             while (true) {
                 System.out.println("Please set your worker"+(j+1)+" location. like row, column");
                 String input = sc.nextLine().trim();
-                Grid location = gameNow.scanGetGrid(input);
+                Grid location = gameNow.getBoard().scanGetGrid(input);
                 if (location == null) {
                     System.out.println("there are something wrong about your input, please input like \"3, 2 \"" + input);
                     continue;
@@ -171,4 +168,6 @@ public class UI {
         }
         return gridInt;
     }
-}
+
+
+ }

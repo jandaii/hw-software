@@ -6,14 +6,14 @@ package edu.cmu.cs214.hw3;
 public class Grid {
     private int row;
     private int column;
-    private int layer;
+    private Tower tower;
 
     private boolean isOccupied;
     public Grid(int row, int column) {
         this.row = row;
         this.column = column;
         isOccupied = false;
-        layer = 0;
+        tower = null;
     }
     /**
      * get row number.
@@ -36,14 +36,24 @@ public class Grid {
      * @return layer
      */
     public int getLayer() {
-        return layer;
+        if (tower == null) {
+            return 0;
+        }
+        return tower.getLayer();
     }
 
     /**
      * build layer.
      */
     public void addLayer() {
-        layer ++;
+        if (tower == null) {
+            tower = new Tower(0);
+        }
+        if (tower.getLayer() < 2) {
+            tower.buildBlock();
+        } else if (tower.getLayer() == 2) {
+            tower.buildDome();
+        }
     }
     /**
      * set if the grid is occupied.
@@ -67,6 +77,6 @@ public class Grid {
      * @return String
      */
     public String toString(){
-        return String.valueOf(row) + String.valueOf(column) + String.valueOf(layer);
+        return String.valueOf(row) + String.valueOf(column);
     }
 }

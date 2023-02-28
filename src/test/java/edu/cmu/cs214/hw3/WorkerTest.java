@@ -206,9 +206,10 @@ public class WorkerTest {
     @Test
     public void testReturnStr1() {
         Board board = new Board();
-        nWorker.setWorker(board.getGrid(0, 0));
-        assertEquals(nWorker.getValidMoveGrids(board.getGrids()).trim(), "(1, 2) (2, 1) (2, 2)".trim());
+        nWorker.setWorker(board.getGrid(1, 0));
+        assertEquals(nWorker.getValidMoveGrids(board.getGrids()).trim(), "(1, 1) (1, 2) (2, 2) (3, 1) (3, 2)".trim());
     }
+
 
     @Test
     public void testReturnStr2() {
@@ -219,4 +220,52 @@ public class WorkerTest {
         girdTO.addLayer();
         assertEquals(nWorker.getValidMoveGrids(board.getGrids()).trim(), "(1, 2) (2, 1)".trim());
     }
+
+    @Test
+    public void testReturnStr3() {
+        Board board = new Board();
+        nWorker.setWorker(board.getGrid(0, 1));
+        assertEquals(nWorker.getValidMoveGrids(board.getGrids()).trim(), "(1, 1) (1, 3) (2, 1) (2, 2) (2, 3)".trim());
+    }
+
+    @Test
+    public void testReturnStr4() {
+        Board board = new Board();
+        nWorker.setWorker(board.getGrid(0, 1));
+        assertEquals(nWorker.getValidMoveGrids(board.getGrids()).trim(), "(1, 1) (1, 3) (2, 1) (2, 2) (2, 3)".trim());
+    }
+
+    @Test
+    public void testReturnStr5() {
+        Board board = new Board();
+        nWorker.setWorker(board.getGrid(4, 3));
+        assertEquals(nWorker.getValidMoveGrids(board.getGrids()).trim(), "(4, 3) (4, 4) (4, 5) (5, 3) (5, 5)".trim());
+    }
+
+    @Test
+    public void testReturnStr6() {
+        Board board = new Board();
+        nWorker.setWorker(board.getGrid(3, 4));
+        assertEquals(nWorker.getValidMoveGrids(board.getGrids()).trim(), "(3, 4) (3, 5) (4, 4) (5, 4) (5, 5)".trim());
+    }
+
+    @Test
+    public void testReturnStr7() {
+        Board board = new Board();
+        board.getGrid(3, 3).setOccupied(true);
+        nWorker.setWorker(board.getGrid(3, 4));
+        assertEquals(nWorker.getValidMoveGrids(board.getGrids()).trim(), "(3, 4) (3, 5) (5, 4) (5, 5)".trim());
+    }
+
+    @Test
+    public void testReturnStr8() {
+        Board board = new Board();
+        board.getGrid(3, 3).addLayer();
+        board.getGrid(3, 3).addLayer();
+        board.getGrid(3, 3).addLayer();
+
+        nWorker.setWorker(board.getGrid(3, 4));
+        assertEquals(nWorker.getValidMoveGrids(board.getGrids()).trim(), "(3, 4) (3, 5) (5, 4) (5, 5)".trim());
+    }
+
 }

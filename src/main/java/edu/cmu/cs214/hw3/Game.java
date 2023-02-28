@@ -18,6 +18,13 @@ public class Game {
         
     }
 
+    public boolean ifEnd() {
+        if (player1.getWinStatus() == true || player2.getWinStatus() == true) {
+            return true;
+        }
+        return false;
+    }
+
     /**
      * return the current player
      * @return the current player
@@ -116,29 +123,19 @@ public class Game {
     }
 
     /**
-     * scan the input and return the value.
-     * @param arg
-     * @return Grid
+     * build the tower
+     * @param nowWorker
+     * @param buildPlace
+     * @return
      */
-    Grid scanGetGrid(String arg) {
-        if (arg == null || arg.length() == 0) {
-            return null;
+    public boolean build(Worker nowWorker, String buildPlace) {
+        Grid buildGrid = this.getBoard().scanGetGrid(buildPlace);
+        if (nowWorker.buildTower(buildGrid) == false) {
+            System.out.println("It is not a valid build. please try again");
+            return false;
         }
-        String[] grid = arg.split(",");
-        int[] gridInt = new int[2];
-        for (int i = 0; i < 2; i ++) {
-            try {
-                gridInt[i] = Integer.valueOf(grid[i]) - 1;
-                if (gridInt[i] >= 5) {
-                    System.out.print(gridInt[i]);
-                    System.out.println("There are only 5*5 grids on the board, please choose a right one.");
-                    return null;
-                }
-            } catch (Exception e) {
-                return null;
-            }
-        }
-        return getBoard().getGrids()[gridInt[0]][gridInt[1]];
+        System.out.println("You successfully build a tower on (" + (buildGrid.getRow() + 1) +", " + (buildGrid.getColumn() + 1) + ") and the height now is " + buildGrid.getLayer() );
+        return true;
     }
 
 }

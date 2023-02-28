@@ -50,4 +50,33 @@ public class Board {
         return this.grids[x][y];
     }
 
+    /**
+     * scan the input and return the grid.
+     * @param arg
+     * @return Grid
+     */
+    Grid scanGetGrid(String arg) {
+        if (arg == null || arg.length() == 0) {
+            return null;
+        }
+        String[] grid = arg.split(",");
+        if (grid.length != 2) {
+            return null;
+        }
+        int[] gridInt = new int[2];
+        for (int i = 0; i < 2; i ++) {
+            try {
+                gridInt[i] = Integer.valueOf(grid[i]) - 1;
+                if (gridInt[i] >= 5) {
+                    System.out.print(gridInt[i]);
+                    System.out.println("There are only 5*5 grids on the board, please choose a right one.");
+                    return null;
+                }
+            } catch (Exception e) {
+                return null;
+            }
+        }
+        return getGrids()[gridInt[0]][gridInt[1]];
+    }
+
 }
