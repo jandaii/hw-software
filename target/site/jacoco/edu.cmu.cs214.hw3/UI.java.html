@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hw3</a> &gt; <a href="index.source.html" class="el_package">edu.cmu.cs214.hw3</a> &gt; <span class="el_source">UI.java</span></div><h1>UI.java</h1><pre class="source lang-java linenums">package edu.cmu.cs214.hw3;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">FlashCards</a> &gt; <a href="index.source.html" class="el_package">edu.cmu.cs214.hw3</a> &gt; <span class="el_source">UI.java</span></div><h1>UI.java</h1><pre class="source lang-java linenums">package edu.cmu.cs214.hw3;
 import java.util.Scanner;
 
 /**
@@ -29,28 +29,29 @@ public class UI {
 
     /**
      * start a new round and return if this is successful.
+     * There are scanner in this method, cannot be tested.
      * @param game
      * @return boolean if this action is success.
      */
     //should to be private but for testing made into public
     public boolean newRound(Game game) {
-<span class="nc" id="L37">        gameNow.initialization();</span>
+<span class="nc" id="L38">        gameNow.initialization();</span>
         // put the workers into the grid.
         
-<span class="nc" id="L40">        Scanner sc = new Scanner(System.in);</span>
-<span class="nc" id="L41">        currentPlayer = game.getCurrentPlayer();</span>
-<span class="nc" id="L42">        System.out.println(&quot;This is round &quot; + game.getRound());</span>
-<span class="nc" id="L43">        System.out.println(&quot;------------------------------------------------------------&quot;);</span>
-<span class="nc" id="L44">        initialSettingWorker(game, sc);</span>
+<span class="nc" id="L41">        Scanner sc = new Scanner(System.in);</span>
+<span class="nc" id="L42">        currentPlayer = game.getCurrentPlayer();</span>
+<span class="nc" id="L43">        System.out.println(&quot;This is round &quot; + game.getRound());</span>
+<span class="nc" id="L44">        System.out.println(&quot;------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L45">        initialSettingWorker(game, sc);</span>
 
         //move and build process
-<span class="nc" id="L47">        oneTurnAction(game, sc);</span>
-<span class="nc" id="L48">        System.out.println(&quot;Do you want to start a new round?(Y/Yes,N/No)&quot;);</span>
-<span class="nc" id="L49">        String ifnewRound = sc.nextLine().trim();</span>
-<span class="nc bnc" id="L50" title="All 4 branches missed.">        if (ifnewRound.equalsIgnoreCase(&quot;Y&quot;) || (ifnewRound).equalsIgnoreCase(&quot;Yes&quot;)) {</span>
-<span class="nc" id="L51">            return true;</span>
+<span class="nc" id="L48">        oneTurnAction(game, sc);</span>
+<span class="nc" id="L49">        System.out.println(&quot;Do you want to start a new round?(Y/Yes,N/No)&quot;);</span>
+<span class="nc" id="L50">        String ifnewRound = sc.nextLine().trim();</span>
+<span class="nc bnc" id="L51" title="All 4 branches missed.">        if (ifnewRound.equalsIgnoreCase(&quot;Y&quot;) || (ifnewRound).equalsIgnoreCase(&quot;Yes&quot;)) {</span>
+<span class="nc" id="L52">            return true;</span>
         }
-<span class="nc" id="L53">        return false;</span>
+<span class="nc" id="L54">        return false;</span>
     }
 
     /**
@@ -60,64 +61,61 @@ public class UI {
      * @param sc
      */
     private void oneTurnAction(Game game, Scanner sc) {
-<span class="nc" id="L63">        while (true) {</span>
+        while (true) {
             // move action.
-<span class="nc bnc" id="L65" title="All 2 branches missed.">            if (ifMoved == false) {</span>
-<span class="nc bnc" id="L66" title="All 2 branches missed.">                if (currentPlayer.ifMovable(game.getBoard()) == false) {</span>
-<span class="nc" id="L67">                    currentPlayer = game.getAnotherPlayer(currentPlayer);</span>
-<span class="nc" id="L68">                    System.out.println(&quot;The player &quot; + currentPlayer + &quot; has won!&quot;);</span>
-<span class="nc" id="L69">                    break;</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            if (ifMoved == false) {</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">                if (currentPlayer.ifMovable(game.getBoard()) == false) {</span>
+<span class="nc" id="L68">                    currentPlayer = game.getAnotherPlayer(currentPlayer);</span>
+<span class="nc" id="L69">                    System.out.println(&quot;The player &quot; + currentPlayer + &quot; has won!&quot;);</span>
+<span class="nc" id="L70">                    break;</span>
                 }
-<span class="nc" id="L71">                System.out.println(&quot;Player &quot; + currentPlayer +&quot; now move your worker&quot;);</span>
-<span class="nc" id="L72">                System.out.println(&quot;Please choose a valid worker to move.&quot;);</span>
-<span class="nc" id="L73">                String workerInfo = sc.nextLine().trim();</span>
-<span class="nc bnc" id="L74" title="All 2 branches missed.">                if (workerInfo == null) {</span>
-<span class="nc" id="L75">                    System.out.println(&quot;Please choose a worker!&quot;);</span>
-<span class="nc" id="L76">                    continue;</span>
+<span class="nc" id="L72">                System.out.println(&quot;Player &quot; + currentPlayer +&quot; now move your worker&quot;);</span>
+<span class="nc" id="L73">                System.out.println(&quot;Please choose a valid worker to move.&quot;);</span>
+<span class="nc" id="L74">                String workerInfo = sc.nextLine().trim();</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">                if (workerInfo == null) {</span>
+<span class="nc" id="L76">                    System.out.println(&quot;Please choose a worker!&quot;);</span>
+<span class="nc" id="L77">                    continue;</span>
                 }
                 try {
-<span class="nc" id="L79">                    int workerGridInfo = Integer.parseInt(workerInfo) - 1;</span>
-<span class="nc" id="L80">                    nowWorker = currentPlayer.getWorkers().get(workerGridInfo);</span>
-<span class="nc" id="L81">                    System.out.println(&quot;Available grids for current worker is &quot; + nowWorker.getValidMoveGrids(game.getBoard().getGrids()));</span>
-<span class="nc" id="L82">                    System.out.println(&quot;Now please enter a grid.(row, column)&quot;);</span>
-<span class="nc" id="L83">                    String gridInfo = sc.nextLine().trim();</span>
-<span class="nc" id="L84">                    int[] GridInfo = locationScanner(gridInfo);</span>
-<span class="nc bnc" id="L85" title="All 2 branches missed.">                    if (GridInfo == null) {</span>
-<span class="nc" id="L86">                        System.out.println(&quot;You need to enter the valid value (row, column),eg (3, 3)&quot;);</span>
+<span class="nc" id="L80">                    int workerGridInfo = Integer.parseInt(workerInfo) - 1;</span>
+<span class="nc" id="L81">                    nowWorker = currentPlayer.getWorkers().get(workerGridInfo);</span>
+<span class="nc" id="L82">                    System.out.println(&quot;Available grids for current worker is &quot; + nowWorker.getValidMoveGrids(game.getBoard().getGrids()));</span>
+<span class="nc" id="L83">                    System.out.println(&quot;Now please enter a grid.(row, column)&quot;);</span>
+<span class="nc" id="L84">                    String gridInfo = sc.nextLine().trim();</span>
+<span class="nc" id="L85">                    int[] GridInfo = locationScanner(gridInfo);</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">                    if (GridInfo == null) {</span>
+<span class="nc" id="L87">                        System.out.println(&quot;You need to enter the valid value (row, column),eg (3, 3)&quot;);</span>
                     }
-<span class="nc bnc" id="L88" title="All 2 branches missed.">                if (gameNow.move(nowWorker,GridInfo) == false) {</span>
-<span class="nc" id="L89">                    System.out.println(&quot;This is not a valid move.&quot;);</span>
-<span class="nc" id="L90">                    continue;</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">                if (gameNow.move(nowWorker,GridInfo) == false) {</span>
+<span class="nc" id="L90">                    System.out.println(&quot;This is not a valid move.&quot;);</span>
+<span class="nc" id="L91">                    continue;</span>
                 }
-<span class="nc bnc" id="L92" title="All 2 branches missed.">                if (currentPlayer.getWinStatus() == true) {</span>
-<span class="nc" id="L93">                    System.out.println(&quot;The player &quot; + currentPlayer + &quot; has won!&quot;);</span>
-<span class="nc" id="L94">                    break;</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">                if (gameNow.ifEnd() == true) {</span>
+<span class="nc" id="L94">                    System.out.println(&quot;The player &quot; + currentPlayer + &quot; has won!&quot;);</span>
+<span class="nc" id="L95">                    break;</span>
                 }
-<span class="nc" id="L96">                ifMoved = true;</span>
-<span class="nc" id="L97">                } catch (Exception e) {</span>
-<span class="nc" id="L98">                    System.out.println(&quot;Please enter a valid worker.&quot;);</span>
-<span class="nc" id="L99">                    continue;</span>
-                }
+<span class="nc" id="L97">                ifMoved = true;</span>
+<span class="nc" id="L98">                } catch (Exception e) {</span>
+<span class="nc" id="L99">                    System.out.println(&quot;Please enter a valid worker.&quot;);</span>
+<span class="nc" id="L100">                    continue;</span>
+<span class="nc" id="L101">                }</span>
                 
             }
             // build action.
-<span class="nc" id="L104">            System.out.println(&quot;You have successfully moved your worker.&quot;);</span>
-<span class="nc" id="L105">            System.out.println(&quot;Player &quot; + currentPlayer +&quot; now build your tower&quot;);</span>
-<span class="nc" id="L106">            System.out.println(&quot;Please now choose a valid grid to build your tower&quot;);</span>
-<span class="nc" id="L107">            String buildPlace = sc.nextLine().trim();</span>
-<span class="nc" id="L108">            Grid buildGrid = scanGetGrid(buildPlace);</span>
-<span class="nc bnc" id="L109" title="All 2 branches missed.">            if (nowWorker.buildTower(buildGrid) == false) {</span>
-<span class="nc" id="L110">                System.out.println(&quot;It is not a valid build. please try again&quot;);</span>
-<span class="nc" id="L111">                System.out.println(nowWorker);</span>
-<span class="nc" id="L112">                continue;</span>
-            }
-<span class="nc" id="L114">            System.out.println(&quot;You successfully build a tower on (&quot; + (buildGrid.getRow() + 1) +&quot;, &quot; + (buildGrid.getColumn() + 1) + &quot;) and the height now is &quot; + buildGrid.getLayer() );</span>
-<span class="nc" id="L115">            nowWorker = null;</span>
-<span class="nc" id="L116">            currentPlayer = game.getAnotherPlayer(currentPlayer);</span>
-<span class="nc" id="L117">            System.out.println(&quot;Now is Player &quot; + currentPlayer + &quot; is playing&quot;);</span>
-<span class="nc" id="L118">            ifMoved = false;</span>
-        }
-<span class="nc" id="L120">    }</span>
+<span class="nc" id="L105">            System.out.println(&quot;You have successfully moved your worker.&quot;);</span>
+<span class="nc" id="L106">            System.out.println(&quot;Player &quot; + currentPlayer +&quot; now build your tower&quot;);</span>
+            
+<span class="nc" id="L108">            System.out.println(&quot;Please now choose a valid grid to build your tower&quot;);</span>
+<span class="nc" id="L109">            String buildPlace = sc.nextLine().trim();</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">            if (gameNow.build(nowWorker, buildPlace) == false) {</span>
+<span class="nc" id="L111">                continue;</span>
+            } 
+<span class="nc" id="L113">            nowWorker = null;</span>
+<span class="nc" id="L114">            currentPlayer = game.getAnotherPlayer(currentPlayer);</span>
+<span class="nc" id="L115">            System.out.println(&quot;Now is Player &quot; + currentPlayer + &quot; is playing&quot;);</span>
+<span class="nc" id="L116">            ifMoved = false;</span>
+<span class="nc" id="L117">        }</span>
+<span class="nc" id="L118">    }</span>
 
     /**
      * for set the workers into the board.
@@ -126,58 +124,31 @@ public class UI {
      * @param sc
      */
     private void initialSettingWorker(Game game, Scanner sc) {
-<span class="nc" id="L129">        System.out.println(&quot;Player1 please set your workers.&quot;);</span>
-<span class="nc bnc" id="L130" title="All 2 branches missed.">        for (int i = 0; i &lt; 2; i++) {</span>
-<span class="nc" id="L131">            int j = 0;</span>
+<span class="nc" id="L127">        System.out.println(&quot;Player1 please set your workers.&quot;);</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">        for (int i = 0; i &lt; 2; i++) {</span>
+<span class="nc" id="L129">            int j = 0;</span>
             while (true) {
-<span class="nc" id="L133">                System.out.println(&quot;Please set your worker&quot;+(j+1)+&quot; location. like row, column&quot;);</span>
-<span class="nc" id="L134">                String input = sc.nextLine().trim();</span>
-<span class="nc" id="L135">                Grid location = scanGetGrid(input);</span>
-<span class="nc bnc" id="L136" title="All 2 branches missed.">                if (location == null) {</span>
-<span class="nc" id="L137">                    System.out.println(&quot;there are something wrong about your input, please input like \&quot;3, 2 \&quot;&quot; + input);</span>
-<span class="nc" id="L138">                    continue;</span>
-<span class="nc bnc" id="L139" title="All 2 branches missed.">                } else if (currentPlayer.getWorkers().get(j).setWorker(location) == false ) {</span>
-<span class="nc" id="L140">                    System.out.println(&quot;There is already a worker now, please pick another one&quot;);</span>
-<span class="nc" id="L141">                    continue;</span>
+<span class="nc" id="L131">                System.out.println(&quot;Please set your worker&quot;+(j+1)+&quot; location. like row, column&quot;);</span>
+<span class="nc" id="L132">                String input = sc.nextLine().trim();</span>
+<span class="nc" id="L133">                Grid location = gameNow.getBoard().scanGetGrid(input);</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">                if (location == null) {</span>
+<span class="nc" id="L135">                    System.out.println(&quot;there are something wrong about your input, please input like \&quot;3, 2 \&quot;&quot; + input);</span>
+<span class="nc" id="L136">                    continue;</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">                } else if (currentPlayer.getWorkers().get(j).setWorker(location) == false ) {</span>
+<span class="nc" id="L138">                    System.out.println(&quot;There is already a worker now, please pick another one&quot;);</span>
+<span class="nc" id="L139">                    continue;</span>
                 } else {
-<span class="nc" id="L143">                    j++;</span>
-<span class="nc" id="L144">                    System.out.println(&quot;Successfully set your worker at &quot; + location);</span>
+<span class="nc" id="L141">                    j++;</span>
+<span class="nc" id="L142">                    System.out.println(&quot;Successfully set your worker at &quot; + location);</span>
                 }
-<span class="nc bnc" id="L146" title="All 2 branches missed.">                if (j == 2) {</span>
-                    break;
+<span class="nc bnc" id="L144" title="All 2 branches missed.">                if (j == 2) {</span>
+<span class="nc" id="L145">                    break;</span>
                 }
-            }
-<span class="nc" id="L150">            currentPlayer = game.getAnotherPlayer(currentPlayer);</span>
-<span class="nc" id="L151">            System.out.println(&quot;Now it's player &quot; + currentPlayer + &quot; turn&quot;);</span>
+<span class="nc" id="L147">            }</span>
+<span class="nc" id="L148">            currentPlayer = game.getAnotherPlayer(currentPlayer);</span>
+<span class="nc" id="L149">            System.out.println(&quot;Now it's player &quot; + currentPlayer + &quot; turn&quot;);</span>
         }
-<span class="nc" id="L153">    }</span>
-
-    /**
-     * scan the input and return the value.
-     * (need to be private, but set for public for testing.)
-     * @param arg
-     * @return Grid
-     */
-    public Grid scanGetGrid(String arg) {
-<span class="nc bnc" id="L162" title="All 4 branches missed.">        if (arg == null || arg.length() == 0) {</span>
-<span class="nc" id="L163">            return null;</span>
-        }
-<span class="nc" id="L165">        String[] grid = arg.split(&quot;,&quot;);</span>
-<span class="nc" id="L166">        int[] gridInt = new int[2];</span>
-<span class="nc bnc" id="L167" title="All 2 branches missed.">        for (int i = 0; i &lt; 2; i ++) {</span>
-            try {
-<span class="nc" id="L169">                gridInt[i] = Integer.valueOf(grid[i]) - 1;</span>
-<span class="nc bnc" id="L170" title="All 2 branches missed.">                if (gridInt[i] &gt;= 5) {</span>
-<span class="nc" id="L171">                    System.out.print(gridInt[i]);</span>
-<span class="nc" id="L172">                    System.out.println(&quot;There are only 5*5 grids on the board, please choose a right one.&quot;);</span>
-<span class="nc" id="L173">                    return null;</span>
-                }
-<span class="nc" id="L175">            } catch (Exception e) {</span>
-<span class="nc" id="L176">                return null;</span>
-            }
-        }
-<span class="nc" id="L179">        return gameNow.getBoard().getGrids()[gridInt[0]][gridInt[1]];</span>
-    }
+<span class="nc" id="L151">    }</span>
 
     /**
      * extract the location from String.
@@ -186,16 +157,18 @@ public class UI {
      * @return
      */
     public static int[] locationScanner(String response) {
-<span class="fc" id="L189">        String[] grid = response.split(&quot;,&quot;);</span>
-<span class="fc" id="L190">        int [] gridInt = new int[2];</span>
-<span class="fc bfc" id="L191" title="All 2 branches covered.">        for (int i = 0; i &lt; 2;i ++) {</span>
+<span class="fc" id="L160">        String[] grid = response.split(&quot;,&quot;);</span>
+<span class="fc" id="L161">        int [] gridInt = new int[2];</span>
+<span class="fc bfc" id="L162" title="All 2 branches covered.">        for (int i = 0; i &lt; 2;i ++) {</span>
             try {
-<span class="fc" id="L193">                gridInt[i] = Integer.valueOf(grid[i]);</span>
-<span class="pc" id="L194">            } catch (Exception e) {</span>
-<span class="nc" id="L195">                return null;</span>
-            }
+<span class="fc" id="L164">                gridInt[i] = Integer.valueOf(grid[i]);</span>
+<span class="nc" id="L165">            } catch (Exception e) {</span>
+<span class="nc" id="L166">                return null;</span>
+<span class="fc" id="L167">            }</span>
         }
-<span class="fc" id="L198">        return gridInt;</span>
+<span class="fc" id="L169">        return gridInt;</span>
     }
-}
+
+
+ }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

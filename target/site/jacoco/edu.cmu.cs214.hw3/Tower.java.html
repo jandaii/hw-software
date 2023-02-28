@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Tower.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">FlashCards</a> &gt; <a href="index.source.html" class="el_package">edu.cmu.cs214.hw3</a> &gt; <span class="el_source">Tower.java</span></div><h1>Tower.java</h1><pre class="source lang-java linenums">package edu.cmu.cs214.hw3;
+
+public class Tower {
+    private int layer;
+    private static final int MAX_LAYER = 3;
+    private boolean isDome;
+
+    /**
+     * return the layer of the tower in this grid
+     * @return
+     */
+    public int getLayer() {
+<span class="fc" id="L13">        return layer;</span>
+    }
+
+    /**
+     * constructor.
+     * @param height
+     */
+<span class="fc" id="L20">    public Tower(int height) {</span>
+<span class="fc" id="L21">        layer = height;</span>
+<span class="fc" id="L22">        isDome = false;</span>
+<span class="fc" id="L23">    }</span>
+
+    public void buildBlock() {
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">        if (IfbuildBlock() == true) {</span>
+<span class="fc" id="L27">            layer ++;</span>
+        }
+        
+<span class="fc" id="L30">    }</span>
+
+    private boolean ifbuildTower() {
+<span class="pc bpc" id="L33" title="1 of 2 branches missed.">        return !isDome;</span>
+    }
+
+    private boolean IfbuildBlock() {
+<span class="pc bpc" id="L37" title="2 of 4 branches missed.">        if (!isDome &amp;&amp; layer &lt; MAX_LAYER) {</span>
+<span class="fc" id="L38">            return true;</span>
+        }
+<span class="nc" id="L40">        return false;</span>
+    }
+
+    public void buildDome() {
+<span class="pc bpc" id="L44" title="1 of 2 branches missed.">        if(ifbuildTower() == true) {</span>
+<span class="fc" id="L45">            layer ++;</span>
+<span class="fc" id="L46">            isDome = true;</span>
+        }
+<span class="fc" id="L48">    }</span>
+
+    public boolean isDome() {
+<span class="nc" id="L51">        return isDome;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

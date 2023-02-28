@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Worker.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hw3</a> &gt; <a href="index.source.html" class="el_package">edu.cmu.cs214.hw3</a> &gt; <span class="el_source">Worker.java</span></div><h1>Worker.java</h1><pre class="source lang-java linenums">package edu.cmu.cs214.hw3;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Worker.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">FlashCards</a> &gt; <a href="index.source.html" class="el_package">edu.cmu.cs214.hw3</a> &gt; <span class="el_source">Worker.java</span></div><h1>Worker.java</h1><pre class="source lang-java linenums">package edu.cmu.cs214.hw3;
 
 /**
  * Worker Class for worker status.
@@ -152,8 +152,8 @@ public class Worker {
 <span class="fc" id="L152">        String output = &quot;&quot;;</span>
 <span class="fc bfc" id="L153" title="All 2 branches covered.">        for (int i = 0; i &lt; 3;i ++){</span>
 <span class="fc bfc" id="L154" title="All 2 branches covered.">            for (int j = 0; j &lt; 3;j++){</span>
-<span class="pc bpc" id="L155" title="2 of 8 branches missed.">                if (rowArray[i] &lt; 0 || columnArray[j] &lt; 0 || rowArray[i] &gt;= 5 || columnArray[j] &gt;= 5 ) {</span>
-<span class="nc" id="L156">                    continue;</span>
+<span class="fc bfc" id="L155" title="All 8 branches covered.">                if (rowArray[i] &lt; 0 || columnArray[j] &lt; 0 || rowArray[i] &gt;= 5 || columnArray[j] &gt;= 5 ) {</span>
+<span class="fc" id="L156">                    continue;</span>
                 }
 <span class="fc bfc" id="L158" title="All 2 branches covered.">                if (Math.abs(currentLayer - grids[rowArray[i]][columnArray[j]].getLayer()) &gt;= 2) {</span>
 <span class="fc" id="L159">                    continue;</span>

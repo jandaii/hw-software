@@ -54,4 +54,21 @@ public class GameTest {
         assertEquals(workerNow.getLocation(), gamenow.getBoard().getGrid(3, 3));
 
     }
+    @Test
+    public void buildTest() {
+        gamenow.initialization();
+        Worker workerNow = gamenow.getCurrentPlayer().getWorker(0);
+        String place = "2,3";
+        workerNow.setWorker(gamenow.getBoard().getGrid(2, 3));
+        assertTrue(gamenow.build(workerNow,place));
+    }
+
+    @Test
+    public void buildTestFalse() {
+        gamenow.initialization();
+        Worker workerNow = gamenow.getCurrentPlayer().getWorker(0);
+        String place = "4,5";
+        workerNow.setWorker(gamenow.getBoard().getGrid(2, 3));
+        assertTrue(gamenow.build(workerNow,place));
+    }
 }
