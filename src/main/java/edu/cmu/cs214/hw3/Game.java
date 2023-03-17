@@ -39,6 +39,7 @@ public class Game {
             for (int j = 0; j< 5; j++) {
                 
                 cells[i][j].setMovable(false);
+                cells[i][j].setBuildable(false);
             }
         }
     }
@@ -233,6 +234,7 @@ public class Game {
         for (Grid[] j : getBoard().getGrids()) {
             for (Grid m : j) {
                 m.setBuildable(false);
+                m.setMovable(false);
             }
         }
         for (Grid i : getArrayGrid) {

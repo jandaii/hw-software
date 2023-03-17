@@ -10,6 +10,8 @@ class BoardCell extends React.Component<Props> {
     let playable = this.props.cell.playable ? 'playable' : '';
     if (this.props.cell.movable) {
       playable = 'movable'
+    } else if (this.props.cell.buildable) {
+      playable = 'buildable'
     }
     
     return (

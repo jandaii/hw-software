@@ -52,9 +52,10 @@ class App extends React.Component<Props, GameState> {
     this.ifMove = false;
     const response = await fetch('/newgame');
     const json = await response.json();
+    this.player = 1;
     this.setState({ cells: json['cells'] });
-    
   }
+
 
 
   /**
@@ -123,7 +124,6 @@ class App extends React.Component<Props, GameState> {
       this.count = this.count + 1;
       const response = await fetch(`/set?x=${x}&y=${y}&count=${this.count}`)
       const json = await response.json();
-
       this.setState({ cells: json['cells'] });
       if (this.count === 2) {
         this.player = 2
@@ -231,11 +231,21 @@ class App extends React.Component<Props, GameState> {
     }
   }
 
+  alert() :React.ReactNode {
+    if(this.getWinner() > 0) {
+      alert('The game ends! The winner is player' + this.getWinner() +', if you want to play again, please click new game');
+      return (
+        <div></div>
+      )
+    } 
+  }
   createTips():React.ReactNode{
-    if (this.getWinner() > 0) return (
+    if (this.getWinner() > 0) {
+    
+    return (
       <div>The game ends! The winner is player{this.getWinner()}, if you want to play again, please click new game</div>
-    )
-    if (this.count < 4) return (
+    )}
+    else if (this.count < 4) return (
       <div>Now is player {this.player} setting your worker</div>
     )
     else if (!this.ifSelect) return (
@@ -263,14 +273,19 @@ class App extends React.Component<Props, GameState> {
     
     return (
       <div>
-        {this.createTips()}
+        <div id = 'container'>
+        <fieldset id = 'tip'>
+        <legend>Tips<abbr>*</abbr></legend>
+          {this.createTips()}
+        </fieldset>
+        </div>
+        
         <div id="board">
           {this.state.cells.map((cell, i) => this.createCell(cell, i))}
         </div>
+        <div>{this.alert()}</div>
         <div id="bottombar">
           <button onClick={/* get the function, not call the function */this.newGame}>New Game</button>
-          {/* Exercise: implement Undo function */}
-          <button>Undo</button>
         </div>
       </div>
     );

@@ -1,3 +1,22 @@
+## Starting the Game
+
+## Set Up Backend Server ##
+run the backend server directly under the project file.
+```
+mvn exec:exec
+```
+in the back-end folder. This will start the Java server at http://localhost:8080.
+
+## Set Up Frontend Server ##
+enter the front-end folder, run
+
+```
+cd frontend/
+npm install
+npm start
+```
+
+
 ## Homework 3: Santorini (Part 1)
 
 In this assignment, you will design and implement the core logic of a board game called Santorini (without god cards) in and only in Java. The focus of this assignment is on considering design alternatives for code. In Homework 5, we will revisit the game and extend it with god cards, with a GUI, and with an AI opponent. 

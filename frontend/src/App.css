@@ -2,7 +2,9 @@
   display: grid;
   grid-template-columns: 100px 100px 100px 100px 100px;
   grid-template-rows: 100px 100px 100px 100px 100px;
-  background-color: #2196F3;
+  background-color: white;
+  justify-content: center; 
+  align-content: center;
   padding: 10px
 }
 
@@ -11,12 +13,22 @@
   border: 1px solid rgba(0, 0, 0, 0.8);
   padding: 20px;
   font-size: 20px;
-  height: 100px;
+  height: 60px;
   text-align: center;
 }
 
 #bottombar {
   height: 5vh;
+  display: flex;
+
+  justify-content: center; 
+  align-content: center;
+}
+#container {
+  height: 10vh;
+  display: flex;
+  justify-content: center; 
+  align-content: center;
 }
 
 #instructions {
@@ -28,11 +40,14 @@
   border: 1px solid black;
 }
 
-#bottombar button {
+#container tips {
   width: 50%;
   /* height: 100%; */
   margin: 0;
   padding: 0;
+  left: 310px;
+  justify-content: center; 
+  align-content: center;
   position: relative;
   float: left;
   font-size: 2vw
@@ -44,7 +59,32 @@ body {
   margin: 0;
   padding: 0;
 }
+/* .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+} */
+#bottombar button {
+  width: 30%;
+  /* height: 100%; */
 
-.playable { background-color: red;}
-.movable {background-color: grey;}
-.buildable {background-color: yellow;}
+  /* left: 310px; */
+  position: relative;
+  justify-content: center; 
+  align-content: center;
+  float: left;
+  font-size: 2vw
+}
+fieldset {
+  /* justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align:center; */
+  left: 200px;
+  width: 50%; /* adjust this value to fit your layout */
+}
+
+.playable { background-color: #6699FF;}
+.movable {background-color: #66CCFF;}
+.buildable {background-color: #99CCCC;}
