@@ -16,7 +16,7 @@ public class PlayerTest {
     @Before
     public void setNewPlayer() {
         setGrid = new Grid(2, 3);
-        nworker = new Worker();
+        nworker = new Worker(0);
         nworker.setWorker(setGrid);
         player = new Player(1);
         player.addWorker(nworker);
@@ -57,7 +57,10 @@ public class PlayerTest {
         Grid grid2 = new Grid (3,4);
         grid2.addLayer();
         grid2.addLayer();
+        grid1.addLayer();
+        grid1.addLayer();
         nworker.setLocation(grid2);
+        nworker.setLocation(grid1);
         assertTrue(player.getWinStatus());
     }
 

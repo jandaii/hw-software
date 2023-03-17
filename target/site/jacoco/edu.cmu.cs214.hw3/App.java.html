@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>App.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Santorini</a> &gt; <a href="index.source.html" class="el_package">edu.cmu.cs214.hw3</a> &gt; <span class="el_source">App.java</span></div><h1>App.java</h1><pre class="source lang-java linenums">package edu.cmu.cs214.hw3;
+
+import java.io.IOException;
+import java.util.Map;
+import fi.iki.elonen.NanoHTTPD;
+
+public class App extends NanoHTTPD {
+
+    //int count = 0;
+    Worker chosen;
+    boolean ifRoundWin;
+    public static void main(String[] args) {
+        try {
+<span class="nc" id="L14">            new App();</span>
+<span class="nc" id="L15">        } catch (IOException ioe) {</span>
+<span class="nc" id="L16">            System.err.println(&quot;Couldn't start server:\n&quot; + ioe);</span>
+<span class="nc" id="L17">        }</span>
+<span class="nc" id="L18">    }</span>
+
+    private Game game;
+
+    /**
+     * Start the server at :8080 port.
+     * @throws IOException
+     */
+    public App() throws IOException {
+<span class="nc" id="L27">        super(8080);</span>
+
+<span class="nc" id="L29">        this.game = new Game();</span>
+
+<span class="nc" id="L31">        start(NanoHTTPD.SOCKET_READ_TIMEOUT, false);</span>
+<span class="nc" id="L32">        System.out.println(&quot;\nRunning!\n&quot;);</span>
+<span class="nc" id="L33">    }</span>
+
+
+    @Override
+    public Response serve(IHTTPSession session) {
+<span class="nc" id="L38">        String uri = session.getUri();</span>
+        
+<span class="nc" id="L40">        Map&lt;String, String&gt; params = session.getParms();</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (uri.equals(&quot;/newgame&quot;)) {</span>
+<span class="nc" id="L42">            this.game = new Game();</span>
+<span class="nc" id="L43">            game.initialization();</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        } else if (uri.equals(&quot;/set&quot;)) {</span>
+            // e.g., /play?x=1&amp;y=1
+            // this game set the worker firstly
+<span class="nc" id="L47">            int count = Integer.parseInt(params.get(&quot;count&quot;));</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            if (count == 3) {</span>
+<span class="nc" id="L49">                game.changeCurrentPlayer();</span>
+            }
+            //count++;
+<span class="nc" id="L52">            game.setWorker(Integer.parseInt(params.get(&quot;x&quot;)), Integer.parseInt(params.get(&quot;y&quot;)), this.game.getCurrentPlayer().getWorker(count%2));</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            if (count == 4) {</span>
+<span class="nc" id="L54">                game.changeCurrentPlayer();</span>
+<span class="nc" id="L55">                game.changeSelectMode();</span>
+            }
+
+            //this.game = this.game.play(Integer.parseInt(params.get(&quot;x&quot;)), Integer.parseInt(params.get(&quot;y&quot;)));
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        } else if (uri.equals(&quot;/select&quot;)) {</span>
+<span class="nc" id="L60">            int x = Integer.parseInt(params.get(&quot;x&quot;));</span>
+<span class="nc" id="L61">            int y = Integer.parseInt(params.get(&quot;y&quot;));</span>
+<span class="nc" id="L62">            Grid gridNow = this.game.getBoard().getGrid(x, y);</span>
+<span class="nc" id="L63">            chosen = gridNow.getCurrentWorker();</span>
+<span class="nc" id="L64">            game.changeMoveGrid(chosen);</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        } else if (uri.equals(&quot;/move&quot;)) {</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            if (game.getCurrentPlayer().ifMovable(game.getBoard()) == false) {</span>
+                
+            }
+<span class="nc" id="L69">            int x = Integer.parseInt(params.get(&quot;x&quot;));</span>
+<span class="nc" id="L70">            int y = Integer.parseInt(params.get(&quot;y&quot;));</span>
+<span class="nc" id="L71">            Grid gridmove = this.game.getBoard().getGrid(x, y);</span>
+<span class="nc" id="L72">            chosen.setLocation(gridmove);</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            if (chosen.getIfWin() == false) {</span>
+<span class="nc" id="L74">                gridmove.setPlayerInfo(game.getCurrentPlayer().getPlayerId()); </span>
+<span class="nc" id="L75">                gridmove.setMovable(false);</span>
+<span class="nc" id="L76">                game.changeBuild(chosen); </span>
+            } else {
+<span class="nc" id="L78">                game.changeAvailable(); </span>
+            }
+            
+              
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        } else if (uri.equals(&quot;/build&quot;)) {</span>
+<span class="nc" id="L83">            int x = Integer.parseInt(params.get(&quot;x&quot;));</span>
+<span class="nc" id="L84">            int y = Integer.parseInt(params.get(&quot;y&quot;));</span>
+<span class="nc" id="L85">            Grid gridbuild = this.game.getBoard().getGrid(x, y);</span>
+<span class="nc" id="L86">            chosen.buildTower(gridbuild);</span>
+<span class="nc" id="L87">            game.changeCurrentPlayer();</span>
+<span class="nc" id="L88">            game.changeSelectMode();</span>
+<span class="nc" id="L89">            game.changeAllMovable();</span>
+
+        } 
+<span class="nc" id="L92">        Board boardNow = game.getBoard();</span>
+        // Extract the view-specific data from the game and apply it to the template.
+        //GameState gameplay = GameState.forGame(this.game);
+<span class="nc" id="L95">        System.out.println(boardNow.toString());</span>
+<span class="nc" id="L96">        return newFixedLengthResponse(boardNow.toString());</span>
+    }
+
+<span class="nc" id="L99">    public static class Test {</span>
+        public String getText() {
+<span class="nc" id="L101">            return &quot;Hello World!&quot;;</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

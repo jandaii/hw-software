@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Game2.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Santorini</a> &gt; <a href="index.source.html" class="el_package">edu.cmu.cs214.hw3</a> &gt; <span class="el_source">Game2.java</span></div><h1>Game2.java</h1><pre class="source lang-java linenums">package edu.cmu.cs214.hw3;
+
+import java.util.ArrayList;
+import java.util.List;
+
+<span class="nc" id="L6">enum Player2 {</span>
+<span class="nc" id="L7">    PLAYER0(0), PLAYER1(1);</span>
+
+    final int value;
+
+<span class="nc" id="L11">    Player2(int value) {</span>
+<span class="nc" id="L12">        this.value = value;</span>
+<span class="nc" id="L13">    }</span>
+}
+
+public class Game2 {
+    private final Board2 board;
+    private final Player2 player;
+    private final List&lt;Game2&gt; history;
+
+    public Game2() {
+<span class="nc" id="L22">        this(new Board2(), Player2.PLAYER0);</span>
+<span class="nc" id="L23">    }</span>
+
+    public Game2(Board2 board, Player2 nextPlayer) {
+<span class="nc" id="L26">        this(board, nextPlayer, List.of());</span>
+<span class="nc" id="L27">    }</span>
+
+<span class="nc" id="L29">    public Game2(Board2 board, Player2 nextPlayer, List&lt;Game2&gt; history) {</span>
+<span class="nc" id="L30">        this.board = board;</span>
+<span class="nc" id="L31">        this.player = nextPlayer;</span>
+<span class="nc" id="L32">        this.history = history;</span>
+<span class="nc" id="L33">    }</span>
+
+    public Board2 getBoard() {
+<span class="nc" id="L36">        return this.board;</span>
+    }
+
+    public Player2 getPlayer() {
+<span class="nc" id="L40">        return this.player;</span>
+    }
+
+    public Game2 play(int x, int y) {
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        if (this.board.getCell(x, y) != null)</span>
+<span class="nc" id="L45">            return this;</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        if (this.getWinner() != null)</span>
+<span class="nc" id="L47">            return this;</span>
+<span class="nc" id="L48">        List&lt;Game2&gt; newHistory = new ArrayList&lt;&gt;(this.history);</span>
+<span class="nc" id="L49">        newHistory.add(this);</span>
+        //change the player, but when set the workers, they need to set 2 in one time
+<span class="nc bnc" id="L51" title="All 2 branches missed.">        Player2 nextPlayer = this.player == Player2.PLAYER0 ? Player2.PLAYER1 : Player2.PLAYER0;</span>
+<span class="nc" id="L52">        return new Game2(this.board.updateCell(x, y, this.player), nextPlayer, newHistory);</span>
+    }
+
+    public Game2 setWorker(int x, int y) {
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        if (this.board.getCell(x, y) != null)</span>
+<span class="nc" id="L57">            return this;</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">        if (this.getWinner() != null)</span>
+<span class="nc" id="L59">            return this;</span>
+<span class="nc" id="L60">        List&lt;Game2&gt; newHistory = new ArrayList&lt;&gt;(this.history);</span>
+<span class="nc" id="L61">        newHistory.add(this);</span>
+        //change the player, but when set the workers, they need to set 2 in one time
+<span class="nc bnc" id="L63" title="All 2 branches missed.">        Player2 nextPlayer = this.player == Player2.PLAYER0 ? Player2.PLAYER1 : Player2.PLAYER0;</span>
+<span class="nc" id="L64">        return new Game2(this.board.updateCell(x, y, this.player), nextPlayer, newHistory);</span>
+    }
+
+    public Player2 getWinner() {
+<span class="nc bnc" id="L68" title="All 2 branches missed.">        for (int row = 0; row &lt; 5; row++)</span>
+<span class="nc bnc" id="L69" title="All 4 branches missed.">            if (board.getCell(row, 0) != null &amp;&amp; board.getCell(row, 0) == board.getCell(row, 1)</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">                    &amp;&amp; board.getCell(row, 1) == board.getCell(row, 2))</span>
+<span class="nc" id="L71">                return board.getCell(row, 0);</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">        for (int col = 0; col &lt; 5; col++)</span>
+<span class="nc bnc" id="L73" title="All 4 branches missed.">            if (board.getCell(0, col) != null &amp;&amp; board.getCell(0, col) == board.getCell(1, col)</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">                    &amp;&amp; board.getCell(0, col) == board.getCell(2, col))</span>
+<span class="nc" id="L75">                return board.getCell(0, col);</span>
+<span class="nc bnc" id="L76" title="All 4 branches missed.">        if (board.getCell(1, 1) != null &amp;&amp; board.getCell(0, 0) == board.getCell(1, 1)</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">                &amp;&amp; board.getCell(1, 1) == board.getCell(2, 2))</span>
+<span class="nc" id="L78">            return board.getCell(1, 1);</span>
+<span class="nc bnc" id="L79" title="All 4 branches missed.">        if (board.getCell(1, 1) != null &amp;&amp; board.getCell(0, 2) == board.getCell(1, 1)</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">                &amp;&amp; board.getCell(1, 1) == board.getCell(2, 0))</span>
+<span class="nc" id="L81">            return board.getCell(1, 1);</span>
+<span class="nc" id="L82">        return null;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -18,12 +18,17 @@ public class Player {
     public Player(int id) {
         playerId = id;
     }
+
+    public int getPlayerId() {
+        return playerId;
+    }
     /**
      * add workers into the player.
      * @param worker
      */
     void addWorker(Worker worker) {
         playerListWorker.add(worker);
+        worker.setPlayer(this);
     }
 
     /**

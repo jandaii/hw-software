@@ -6,14 +6,59 @@ package edu.cmu.cs214.hw3;
 public class Grid {
     private int row;
     private int column;
+    private String text;
+    private boolean playable;
+    private boolean selectable;
+    private boolean buildable;
+    private boolean movable;
+    private Worker worker;
+    //layer: get layer.
+    private int playerInfo;
     private Tower tower;
 
     private boolean isOccupied;
     public Grid(int row, int column) {
         this.row = row;
         this.column = column;
+        this.playable = true;
+        this.playerInfo = -1;
+        this.text = "";
+        this.selectable = true;
+        this.movable = false;
+        this.buildable = false;
         isOccupied = false;
         tower = null;
+    }
+
+    public void setBuildable(boolean build) {
+        this.buildable = build;
+    }
+
+
+
+
+    public void setMovable(boolean move) {
+        this.movable = move;
+    }
+
+    public void setPlayerInfo(int i) {
+        playerInfo = i;
+    }
+
+    public void setCurrentWorker(Worker worker) {
+        this.worker = worker;
+    }
+
+    public Worker getCurrentWorker() {
+        return this.worker;
+    }
+
+    public int getPlayerInfo() {
+        return playerInfo;
+    }
+
+    public void setPlayable(boolean ifPlayable) {
+        this.playable = ifPlayable;
     }
     /**
      * get row number.
@@ -21,6 +66,10 @@ public class Grid {
      */
     public int getRow() {
         return row;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
     /**
@@ -49,9 +98,9 @@ public class Grid {
         if (tower == null) {
             tower = new Tower(0);
         }
-        if (tower.getLayer() < 2) {
+        if (tower.getLayer() < 3) {
             tower.buildBlock();
-        } else if (tower.getLayer() == 2) {
+        } else if (tower.getLayer() == 3) {
             tower.buildDome();
         }
     }
@@ -71,12 +120,29 @@ public class Grid {
         return isOccupied;
     }
 
+    public void setSelectable(boolean selectable) {
+        this.selectable = selectable;
+    }
+
     /**
-     * toString method, to make sure the print.
+     * toString method, to  make sure the print.
      * No need to test.
      * @return String
      */
+    @Override
     public String toString(){
-        return String.valueOf(row) + String.valueOf(column);
-    }
+    return """
+        {
+            "text": "%s",
+            "playable": %b,
+            "x": %d,
+            "y": %d ,
+            "layer": %d,
+            "player": %d,
+            "selectable" : %b,
+            "movable" : %b,
+            "buildable" : %b
+        }
+        """.formatted(this.text, this.playable, this.row, this.column,getLayer(),this.playerInfo,this.selectable,this.movable,this.buildable);
+}
 }

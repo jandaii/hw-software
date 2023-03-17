@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GameState.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Santorini</a> &gt; <a href="index.source.html" class="el_package">edu.cmu.cs214.hw3</a> &gt; <span class="el_source">GameState.java</span></div><h1>GameState.java</h1><pre class="source lang-java linenums">package edu.cmu.cs214.hw3;
+
+import java.util.Arrays;
+
+public class GameState {
+
+    private final Cell[] cells;
+
+<span class="nc" id="L9">    private GameState(Cell[] cells) {</span>
+<span class="nc" id="L10">        this.cells = cells;</span>
+<span class="nc" id="L11">    }</span>
+
+    //update the cells
+    public static GameState forGame(Game2 game) {
+<span class="nc" id="L15">        Cell[] cells = getCells(game);</span>
+<span class="nc" id="L16">        return new GameState(cells);</span>
+    }
+
+    public Cell[] getCells() {
+<span class="nc" id="L20">        return this.cells;</span>
+    }
+
+    /**
+     * toString() of GameState will return the string representing
+     * the GameState in JSON format.
+     */
+    @Override
+    public String toString() {
+<span class="nc" id="L29">        return &quot;&quot;&quot;</span>
+                { &quot;cells&quot;: %s}
+<span class="nc" id="L31">                &quot;&quot;&quot;.formatted(Arrays.toString(this.cells));</span>
+    }
+
+    private static Cell[] getCells(Game2 game) {
+<span class="nc" id="L35">        Cell cells[] = new Cell[25];</span>
+<span class="nc" id="L36">        Board2 board = game.getBoard();</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        for (int x = 0; x &lt;= 4; x++) {</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">            for (int y = 0; y &lt;= 4; y++) {</span>
+<span class="nc" id="L39">                String text = &quot;&quot;;</span>
+<span class="nc" id="L40">                boolean playable = false;</span>
+<span class="nc" id="L41">                int layer = 0;</span>
+<span class="nc" id="L42">                int playerInfo = 0;</span>
+<span class="nc" id="L43">                Player2 player = board.getCell(x, y);</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">                if (player == Player2.PLAYER0)</span>
+<span class="nc" id="L45">                    text = &quot;X&quot;;</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">                else if (player == Player2.PLAYER1)</span>
+<span class="nc" id="L47">                    text = &quot;O&quot;;</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">                else if (player == null) {</span>
+<span class="nc" id="L49">                    playable = true;</span>
+                }
+<span class="nc" id="L51">                cells[5 * y + x] = new Cell(x, y, text, playable,layer, playerInfo);</span>
+            }
+        }
+<span class="nc" id="L54">        return cells;</span>
+    }
+}
+
+class Cell {
+    private final int x;
+    private final int y;
+    private final String text;
+    private final boolean playable;
+    private final int layer;
+    private final int playerInfo;
+
+<span class="nc" id="L66">    Cell(int x, int y, String text, boolean playable, int layer, int playerInfo) {</span>
+<span class="nc" id="L67">        this.x = x;</span>
+<span class="nc" id="L68">        this.y = y;</span>
+<span class="nc" id="L69">        this.text = text;</span>
+<span class="nc" id="L70">        this.playable = playable;</span>
+<span class="nc" id="L71">        this.layer = layer;</span>
+<span class="nc" id="L72">        this.playerInfo = playerInfo;</span>
+<span class="nc" id="L73">    }</span>
+    public int getLayer() {
+<span class="nc" id="L75">        return layer;</span>
+    }
+    public int getplayerInfo() {
+<span class="nc" id="L78">        return playerInfo;</span>
+    }
+
+    public int getX() {
+<span class="nc" id="L82">        return x;</span>
+    }
+
+    public int getY() {
+<span class="nc" id="L86">        return y;</span>
+    }
+
+    public String getText() {
+<span class="nc" id="L90">        return this.text;</span>
+    }
+
+    public boolean isPlayable() {
+<span class="nc" id="L94">        return this.playable;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L99">        return &quot;&quot;&quot;</span>
+                {
+                    &quot;text&quot;: &quot;%s&quot;,
+                    &quot;playable&quot;: %b,
+                    &quot;x&quot;: %d,
+                    &quot;y&quot;: %d ,
+                    &quot;layer&quot;: %d,
+                    &quot;player&quot;: %d
+                }
+<span class="nc" id="L108">                &quot;&quot;&quot;.formatted(this.text, this.playable, this.x, this.y,this.layer,this.playerInfo);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

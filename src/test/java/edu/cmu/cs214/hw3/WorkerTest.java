@@ -14,7 +14,7 @@ public class WorkerTest {
 
     public void setNewWorker() {
         setGrid = new Grid(2, 3);
-        nWorker = new Worker();
+        nWorker = new Worker(0);
     }
     @Test
     public void setWorker()
@@ -141,6 +141,8 @@ public class WorkerTest {
         newGrid.addLayer();
         newGrid.addLayer();
         newGrid.addLayer();
+        newGrid.addLayer();
+
         assertFalse(nWorker.buildTower(newGrid));
     }
 
@@ -168,6 +170,10 @@ public class WorkerTest {
         grid2.addLayer();
         grid2.addLayer();
         nWorker.setLocation(grid2);
+        grid1.addLayer();
+        grid1.addLayer();
+        nWorker.setLocation(grid1);
+        //assertEquals(nWorker.layer, grid1);
         assertTrue(nWorker.getIfWin());
     }
 

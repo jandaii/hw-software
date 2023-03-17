@@ -1,0 +1,50 @@
+#board {
+  display: grid;
+  grid-template-columns: 100px 100px 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px 100px 100px;
+  background-color: #2196F3;
+  padding: 10px
+}
+
+.cell {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 20px;
+  height: 100px;
+  text-align: center;
+}
+
+#bottombar {
+  height: 5vh;
+}
+
+#instructions {
+  height: 5vh;
+  background-color: white;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+#bottombar button {
+  width: 50%;
+  /* height: 100%; */
+  margin: 0;
+  padding: 0;
+  position: relative;
+  float: left;
+  font-size: 2vw
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.playable { background-color: red;}
+.movable {background-color: grey;}
+.buildable {background-color: yellow;}

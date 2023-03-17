@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: edu.cmu.cs214.hw3.GameTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.193 s - in edu.cmu.cs214.hw3.GameTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.358 sec

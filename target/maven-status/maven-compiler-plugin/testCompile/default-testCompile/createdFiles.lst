@@ -1,5 +1,6 @@
-edu\cmu\cs214\hw3\BoardTest.class
-edu\cmu\cs214\hw3\GameTest.class
-edu\cmu\cs214\hw3\GridTest.class
-edu\cmu\cs214\hw3\WorkerTest.class
-edu\cmu\cs214\hw3\PlayerTest.class
+edu/cmu/cs214/hw3/BoardTest.class
+edu/cmu/cs214/hw3/GridTest.class
+edu/cmu/cs214/hw3/PlayerTest.class
+edu/cmu/cs214/hw3/GameTest.class
+edu/cmu/cs214/hw3/UITest.class
+edu/cmu/cs214/hw3/WorkerTest.class

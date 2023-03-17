@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Board2.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Santorini</a> &gt; <a href="index.source.html" class="el_package">edu.cmu.cs214.hw3</a> &gt; <span class="el_source">Board2.java</span></div><h1>Board2.java</h1><pre class="source lang-java linenums">package edu.cmu.cs214.hw3;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+//this is a board with players note on it.
+public class Board2 {
+    private final Player2[] cells;
+
+    public Board2() {
+<span class="nc" id="L11">        this(IntStream.range(0, 25).mapToObj(i -&gt; null)</span>
+<span class="nc" id="L12">                .collect(Collectors.toList()).toArray(new Player2[0]));</span>
+<span class="nc" id="L13">    }</span>
+
+<span class="nc" id="L15">    public Board2(Player2[] cells) {</span>
+<span class="nc" id="L16">        this.cells = cells;</span>
+<span class="nc" id="L17">    }</span>
+
+    public Player2 getCell(int x, int y) {
+<span class="nc" id="L20">        return this.cells[y * 5 + x];</span>
+    }
+
+    public Board2 updateCell(int x, int y, Player2 player) {
+<span class="nc" id="L24">        Player2[] newCells = Arrays.copyOf(this.cells, this.cells.length);</span>
+<span class="nc" id="L25">        newCells[y * 5 + x] = player;</span>
+<span class="nc" id="L26">        return new Board2(newCells);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

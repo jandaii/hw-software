@@ -1,11 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Game.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">FlashCards</a> &gt; <a href="index.source.html" class="el_package">edu.cmu.cs214.hw3</a> &gt; <span class="el_source">Game.java</span></div><h1>Game.java</h1><pre class="source lang-java linenums">package edu.cmu.cs214.hw3;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Game.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Santorini</a> &gt; <a href="index.source.html" class="el_package">edu.cmu.cs214.hw3</a> &gt; <span class="el_source">Game.java</span></div><h1>Game.java</h1><pre class="source lang-java linenums">package edu.cmu.cs214.hw3;
+
+import java.util.ArrayList;
 
 /**
  * Game class for the game to manipulate the turn.
  * @author Xuezhen Dai xuezhend
  */
 public class Game {
-<span class="fc" id="L8">    private int round = 0;</span>
+<span class="fc" id="L10">    private int round = 0;</span>
     Board board;
     int turn;
     private Player currentPlayer;
@@ -14,15 +16,38 @@ public class Game {
     /**
      * constructor.
      */
-<span class="fc" id="L17">    public Game() {</span>
+<span class="fc" id="L19">    public Game() {</span>
         
-<span class="fc" id="L19">    }</span>
+<span class="fc" id="L21">    }</span>
+
+    public void changeSelectMode() {
+<span class="nc" id="L24">        Grid[][] cells = board.getGrids();</span>
+<span class="nc bnc" id="L25" title="All 2 branches missed.">        for (int i = 0; i &lt; 5; i++) {</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">            for (int j = 0; j&lt; 5; j++) {</span>
+<span class="nc bnc" id="L27" title="All 2 branches missed.">                if (cells[i][j].getPlayerInfo() == currentPlayer.getPlayerId()) {</span>
+<span class="nc" id="L28">                    cells[i][j].setSelectable(true);</span>
+                } else {
+<span class="nc" id="L30">                    cells[i][j].setSelectable(false);</span>
+                }
+            }
+        }
+<span class="nc" id="L34">    }</span>
+
+    public void changeAllMovable() {
+<span class="nc" id="L37">        Grid[][] cells = board.getGrids();</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">        for (int i = 0; i &lt; 5; i++) {</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            for (int j = 0; j&lt; 5; j++) {</span>
+                
+<span class="nc" id="L41">                cells[i][j].setMovable(false);</span>
+            }
+        }
+<span class="nc" id="L44">    }</span>
 
     public boolean ifEnd() {
-<span class="nc bnc" id="L22" title="All 4 branches missed.">        if (player1.getWinStatus() == true || player2.getWinStatus() == true) {</span>
-<span class="nc" id="L23">            return true;</span>
+<span class="nc bnc" id="L47" title="All 4 branches missed.">        if (player1.getWinStatus() == true || player2.getWinStatus() == true) {</span>
+<span class="nc" id="L48">            return true;</span>
         }
-<span class="nc" id="L25">        return false;</span>
+<span class="nc" id="L50">        return false;</span>
     }
 
     /**
@@ -30,7 +55,7 @@ public class Game {
      * @return the current player
      */
     public Player getCurrentPlayer() {
-<span class="fc" id="L33">        return currentPlayer;</span>
+<span class="fc" id="L58">        return currentPlayer;</span>
     }
 
     /**
@@ -38,7 +63,7 @@ public class Game {
      * @return player 1
      */
     public Player getPlayer1() {
-<span class="fc" id="L41">        return player1;</span>
+<span class="fc" id="L66">        return player1;</span>
     }
 
     /**
@@ -46,34 +71,35 @@ public class Game {
      * @return player2
      */
     public Player getPlayer2() {
-<span class="fc" id="L49">        return player2;</span>
+<span class="fc" id="L74">        return player2;</span>
     }
+
 
     /**
      * initialize a new game.
      */
     public void initialization() {
-<span class="fc" id="L56">        round ++;</span>
-<span class="fc" id="L57">        player1 = new Player(1);</span>
-<span class="fc" id="L58">        player2 = new Player(2);</span>
-<span class="fc" id="L59">        board = new Board();</span>
-<span class="fc" id="L60">        Worker worker1 = new Worker();</span>
-<span class="fc" id="L61">        Worker worker2 = new Worker();</span>
-<span class="fc" id="L62">        Worker worker3 = new Worker();</span>
-<span class="fc" id="L63">        Worker worker4 = new Worker();</span>
-<span class="fc" id="L64">        player1.addWorker(worker1);</span>
-<span class="fc" id="L65">        player1.addWorker(worker2);</span>
-<span class="fc" id="L66">        player2.addWorker(worker3);</span>
-<span class="fc" id="L67">        player2.addWorker(worker4);</span>
-<span class="fc" id="L68">        currentPlayer = player1;</span>
-<span class="fc" id="L69">    }</span>
+<span class="fc" id="L82">        round ++;</span>
+<span class="fc" id="L83">        player1 = new Player(1);</span>
+<span class="fc" id="L84">        player2 = new Player(2);</span>
+<span class="fc" id="L85">        board = new Board();</span>
+<span class="fc" id="L86">        Worker worker1 = new Worker(0);</span>
+<span class="fc" id="L87">        Worker worker2 = new Worker(1);</span>
+<span class="fc" id="L88">        Worker worker3 = new Worker(2);</span>
+<span class="fc" id="L89">        Worker worker4 = new Worker(3);</span>
+<span class="fc" id="L90">        player1.addWorker(worker1);</span>
+<span class="fc" id="L91">        player1.addWorker(worker2);</span>
+<span class="fc" id="L92">        player2.addWorker(worker3);</span>
+<span class="fc" id="L93">        player2.addWorker(worker4);</span>
+<span class="fc" id="L94">        currentPlayer = player1;</span>
+<span class="fc" id="L95">    }</span>
 
     /**
      * return the current board.
      * @return the current board
      */
     public Board getBoard() {
-<span class="fc" id="L76">        return board;</span>
+<span class="fc" id="L102">        return board;</span>
     }
     /**
      * change the current Player.
@@ -81,25 +107,25 @@ public class Game {
      * @return
      */
     public Player getAnotherPlayer(Player player) {
-<span class="pc bpc" id="L84" title="1 of 2 branches missed.">        if (player == player1) {</span>
-<span class="fc" id="L85">            return player2;</span>
+<span class="pc bpc" id="L110" title="1 of 2 branches missed.">        if (player == player1) {</span>
+<span class="fc" id="L111">            return player2;</span>
         }
-<span class="nc" id="L87">        return player1;</span>
+<span class="nc" id="L113">        return player1;</span>
     }
 
     /**
      * there are 2 players, and switch between them.
      */
     public void changeCurrentPlayer() {
-<span class="fc" id="L94">        currentPlayer = getAnotherPlayer(currentPlayer);</span>
-<span class="fc" id="L95">    }</span>
+<span class="fc" id="L120">        currentPlayer = getAnotherPlayer(currentPlayer);</span>
+<span class="fc" id="L121">    }</span>
 
     /**
      * return the round No.
      * @return
      */
     public int getRound() {
-<span class="nc" id="L102">        return round;</span>
+<span class="nc" id="L128">        return round;</span>
     }
 
     /**
@@ -109,17 +135,33 @@ public class Game {
      * @return
      */
     public boolean move(Worker worker, int[] gridLocation) {
-<span class="pc bpc" id="L112" title="1 of 2 branches missed.">        if (gridLocation == null) {</span>
-<span class="nc" id="L113">            return false;</span>
+<span class="pc bpc" id="L138" title="1 of 2 branches missed.">        if (gridLocation == null) {</span>
+<span class="nc" id="L139">            return false;</span>
         }
-<span class="fc" id="L115">        Grid[][] grids = getBoard().getGrids();</span>
-<span class="fc" id="L116">        int row = gridLocation[0] - 1;</span>
-<span class="fc" id="L117">        int column = gridLocation[1] - 1;</span>
-<span class="fc" id="L118">        Grid goalGrid= grids[row][column];</span>
-<span class="fc bfc" id="L119" title="All 2 branches covered.">        if (currentPlayer.moveWorker(worker, goalGrid) == false) {</span>
-<span class="fc" id="L120">            return false;</span>
+<span class="fc" id="L141">        Grid[][] grids = getBoard().getGrids();</span>
+<span class="fc" id="L142">        int row = gridLocation[0] - 1;</span>
+<span class="fc" id="L143">        int column = gridLocation[1] - 1;</span>
+<span class="fc" id="L144">        Grid goalGrid= grids[row][column];</span>
+<span class="fc bfc" id="L145" title="All 2 branches covered.">        if (currentPlayer.moveWorker(worker, goalGrid) == false) {</span>
+<span class="fc" id="L146">            return false;</span>
         }
-<span class="fc" id="L122">        return true;</span>
+<span class="fc" id="L148">        return true;</span>
+    }
+
+    /**
+     * set the worker into the grid
+     * @param x
+     * @param y
+     * @param worker
+     * @return
+     */
+    public Game move(int x, int y, Worker worker) {
+<span class="nc bnc" id="L159" title="All 2 branches missed.">        if (getBoard().getGrid(x, y) == null) {</span>
+<span class="nc" id="L160">            return this;</span>
+        }
+<span class="nc" id="L162">        Grid location = getBoard().getGrid(x, y);</span>
+<span class="nc" id="L163">        worker.setWorker(location);</span>
+<span class="nc" id="L164">        return this;</span>
     }
 
     /**
@@ -129,14 +171,87 @@ public class Game {
      * @return
      */
     public boolean build(Worker nowWorker, String buildPlace) {
-<span class="fc" id="L132">        Grid buildGrid = this.getBoard().scanGetGrid(buildPlace);</span>
-<span class="pc bpc" id="L133" title="1 of 2 branches missed.">        if (nowWorker.buildTower(buildGrid) == false) {</span>
-<span class="nc" id="L134">            System.out.println(&quot;It is not a valid build. please try again&quot;);</span>
-<span class="nc" id="L135">            return false;</span>
+<span class="fc" id="L174">        Grid buildGrid = this.getBoard().scanGetGrid(buildPlace);</span>
+<span class="pc bpc" id="L175" title="1 of 2 branches missed.">        if (nowWorker.buildTower(buildGrid) == false) {</span>
+<span class="nc" id="L176">            System.out.println(&quot;It is not a valid build. please try again&quot;);</span>
+<span class="nc" id="L177">            return false;</span>
         }
-<span class="fc" id="L137">        System.out.println(&quot;You successfully build a tower on (&quot; + (buildGrid.getRow() + 1) +&quot;, &quot; + (buildGrid.getColumn() + 1) + &quot;) and the height now is &quot; + buildGrid.getLayer() );</span>
-<span class="fc" id="L138">        return true;</span>
+<span class="fc" id="L179">        System.out.println(&quot;You successfully build a tower on (&quot; + (buildGrid.getRow() + 1) +&quot;, &quot; + (buildGrid.getColumn() + 1) + &quot;) and the height now is &quot; + buildGrid.getLayer() );</span>
+<span class="fc" id="L180">        return true;</span>
     }
+
+    /**
+     * build tower for js UI.
+     * @return board
+     */
+    public Board build(int x, int y, Worker nowWorker) {
+<span class="nc bnc" id="L188" title="All 2 branches missed.">        if (getBoard().getGrid(x, y) == null) {</span>
+<span class="nc" id="L189">            return getBoard();</span>
+        }
+<span class="nc" id="L191">        Grid buildGrid = this.getBoard().getGrid(x, y);</span>
+<span class="nc" id="L192">        nowWorker.buildTower(buildGrid);</span>
+<span class="nc" id="L193">        return getBoard();</span>
+    }
+
+    /**
+     * set the worker at the right place and return the board
+     * @param x
+     * @param y
+     * @param worker
+     * @return
+     */
+    // set the worker in the right place return the board. or game?
+    public Board setWorker(int x, int y, Worker worker) {
+<span class="nc bnc" id="L205" title="All 2 branches missed.">        if (getBoard().getGrid(x, y) == null ) {</span>
+<span class="nc" id="L206">            return null;</span>
+        }
+<span class="nc" id="L208">        worker.setWorker(getBoard().getGrid(x, y));</span>
+<span class="nc" id="L209">        getBoard().getGrid(x, y).setPlayable(false);</span>
+<span class="nc" id="L210">        getBoard().getGrid(x, y).setText(worker.PlayerID());</span>
+<span class="nc" id="L211">        getBoard().getGrid(x, y).setCurrentWorker(worker);</span>
+<span class="nc" id="L212">        getBoard().getGrid(x, y).setPlayerInfo(getCurrentPlayer().getPlayerId());</span>
+<span class="nc" id="L213">        getBoard().getGrid(x, y).setSelectable(false);</span>
+
+<span class="nc" id="L215">        return getBoard();</span>
+    }
+
+    public void changeMoveGrid(Worker workerchange) {
+<span class="nc" id="L219">        ArrayList&lt;Grid&gt; getArrayGrid = new ArrayList&lt;Grid&gt;();</span>
+<span class="nc" id="L220">        getArrayGrid =  workerchange.getValidMoveGridsArray(getBoard().getGrids());</span>
+<span class="nc bnc" id="L221" title="All 2 branches missed.">        for (Grid[] j : getBoard().getGrids()) {</span>
+<span class="nc bnc" id="L222" title="All 2 branches missed.">            for (Grid m : j) {</span>
+<span class="nc" id="L223">                m.setMovable(false);</span>
+            }
+        }
+<span class="nc bnc" id="L226" title="All 2 branches missed.">        for (Grid i : getArrayGrid) {</span>
+<span class="nc" id="L227">            i.setMovable(true);</span>
+<span class="nc" id="L228">        }</span>
+<span class="nc" id="L229">    }</span>
+    public void changeBuild(Worker workerchange) {
+<span class="nc" id="L231">        ArrayList&lt;Grid&gt; getArrayGrid = new ArrayList&lt;Grid&gt;();</span>
+<span class="nc" id="L232">        getArrayGrid =  workerchange.getValidbuildGridsArray(getBoard().getGrids());</span>
+<span class="nc bnc" id="L233" title="All 2 branches missed.">        for (Grid[] j : getBoard().getGrids()) {</span>
+<span class="nc bnc" id="L234" title="All 2 branches missed.">            for (Grid m : j) {</span>
+<span class="nc" id="L235">                m.setBuildable(false);</span>
+            }
+        }
+<span class="nc bnc" id="L238" title="All 2 branches missed.">        for (Grid i : getArrayGrid) {</span>
+<span class="nc" id="L239">            i.setBuildable(true);</span>
+<span class="nc" id="L240">        }</span>
+<span class="nc" id="L241">    }</span>
+
+    public void changeAvailable() {
+<span class="nc bnc" id="L244" title="All 2 branches missed.">        for (Grid[] j : getBoard().getGrids()) {</span>
+<span class="nc bnc" id="L245" title="All 2 branches missed.">            for (Grid m : j) {</span>
+<span class="nc" id="L246">                m.setBuildable(false);</span>
+<span class="nc" id="L247">                m.setMovable(false);</span>
+<span class="nc" id="L248">                m.setSelectable(false);</span>
+            }
+        }
+<span class="nc" id="L251">    }</span>
+
+
+
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

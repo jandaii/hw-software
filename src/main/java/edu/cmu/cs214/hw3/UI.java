@@ -150,6 +150,7 @@ public class UI {
         }
     }
 
+
     /**
      * extract the location from String.
      * need to be private (non-static) but set into public for testing.

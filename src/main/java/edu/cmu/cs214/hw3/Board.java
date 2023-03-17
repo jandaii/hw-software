@@ -1,5 +1,7 @@
 package edu.cmu.cs214.hw3;
 
+import java.util.Arrays;
+
 /**
  * Board class for the game deck.
  * @author Xuezhen Dai (xuezhend)
@@ -77,6 +79,23 @@ public class Board {
             }
         }
         return getGrids()[gridInt[0]][gridInt[1]];
+    }
+
+    private Grid[] getGridss() {
+        Grid gridss[] = new Grid[25];
+        for(int x = 0;x <=4;x++) {
+            for (int y = 0; y<= 4;y++) {
+                gridss[5 * y + x] = getGrid(x, y);
+            }
+        }
+        return gridss;
+    }
+
+    @Override
+    public String toString() {
+        return """
+                { "cells": %s}
+                """.formatted(Arrays.toString(this.getGridss()));
     }
 
 }
